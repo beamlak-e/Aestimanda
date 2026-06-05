@@ -2,29 +2,22 @@ import './style.css';
 
 let verbData = [];
 
-// When user submits the search form
 document.getElementById('searchForm').addEventListener('submit', function (event) {
   event.preventDefault();
-   
-  const searchTerm = document.getElementById('searchInput').value.trim();
-  const attribute = document.getElementById('attribute').value;
+
+  const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
 
   console.log("Search term:", searchTerm);
-  console.log("Attribute:", attribute);
- 
 
   const matches = verbData.filter((verb) => {
-    ///return verb.root === searchTerm;
-    ///converts user input to lowercase so there is no mistmatch that limits results 
-    return verb.root.trim().toLowerCase() === searchTerm.trim().toLowerCase(); 
-    
+    return verb.root?.trim().toLowerCase() === searchTerm;
   });
-  
+
   console.log("Matches:", matches);
 
   const groupedResults = groupWordForms(matches);
-  
-  displayResults(groupedResults);  ///displays search results
+
+  displayResults(groupedResults);
 });
 
 
@@ -99,13 +92,11 @@ function displayResults(results) {
     return;
   }
   
-
-  
   results.forEach((verb) => {
     const listItem = document.createElement("li");
 
     listItem.textContent =
-      `${verb.wordForm} (${verb.count}) — root: ${verb.root}, gloss: ${verb.gloss}`;
+      `${verb.wordForm} (${verb.count}) `;
 
     wordFormList.appendChild(listItem);
   }); 
