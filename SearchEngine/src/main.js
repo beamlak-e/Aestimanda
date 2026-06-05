@@ -1,26 +1,33 @@
 import './style.css';
 
+///creates empty array that we later store are stugg from 
 let verbData = [];
 
+/// when we press submit 
 document.getElementById('searchForm').addEventListener('submit', function (event) {
   event.preventDefault();
-
+ 
+  /////changes search input to lowercase so values arents filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
-
+ 
+  ///logs on console 
   console.log("Search term:", searchTerm);
 
+
   const matches = verbData.filter((verb) => {
+    ///check if roots equal what user typed
     return verb.root?.trim().toLowerCase() === searchTerm;
   });
 
+  ///again logs on console 
   console.log("Matches:", matches);
 
   const groupedResults = groupWordForms(matches);
-
+  
   displayResults(groupedResults);
 });
 
-
+/////bla bla bla bla 
 
 // Load and process XML file ///Test cases 
 async function testXML() {
@@ -37,7 +44,7 @@ async function testXML() {
 
   const verbs = xmlDoc.querySelectorAll("Verb");
   
-
+  ///finds verb element in xml 
   verbData = [];
 
   ////takes that long string and gets the indivual roots, gloss 
@@ -45,12 +52,20 @@ async function testXML() {
     const wordForm = verb.textContent.trim();
     const root = verb.getAttribute("root");
     const gloss = verb.getAttribute("gloss");
+   
+    
+    const pada = verb.parentElement; 
+    //gets pada id (the numbers line refrence)
+    const padaId = pada.getAttribute("id"); 
+    const padaText = pada.textContent.trim(); 
 
     ///pushes it 
     verbData.push({
       wordForm: wordForm,
       root: root,
-      gloss: gloss
+      gloss: gloss,   ///does nothing right now :3 
+      padaId : padaId,
+      padaText: padaText
     });
   });
 
@@ -94,12 +109,47 @@ function displayResults(results) {
   
   results.forEach((verb) => {
     const listItem = document.createElement("li");
+    const link= document.createElement("a");
 
-    listItem.textContent =
-      `${verb.wordForm} (${verb.count}) `;
+    
+     link.href = "#"; 
+     link.textContent = `${verb.wordForm} (${verb.count})`; 
 
+     link.addEventListener("click", function(event){
+      event.preventDefault(); 
+      console.log("Clicked word form:" , verb.wordForm); 
+      showOccurrencesForWordForm(verb.wordForm);
+     });
+      listItem.appendChild(link); 
+    //listItem.textContent =
+     // `${verb.wordForm} (${verb.count}) `;
     wordFormList.appendChild(listItem);
   }); 
 }
+
+//// it runs (verb.wordForm) -->> 
+function showOccurrencesForWordForm(wordForm) {
+  ///searches dataset again 
+  const occurrences = verbData.filter((verb) => {
+    return verb.wordForm === wordForm;
+  });
+
+  displayOccurrences(occurrences);
+}
+
+function displayOccurrences(occurrences) {
+  const wordFormList = document.getElementById("wordFormList");
+
+  wordFormList.innerHTML = "";
+
+  occurrences.forEach((verb) => {
+    const listItem = document.createElement("li");
+     ////combines the line refrence with the context lines 
+    listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
+
+    wordFormList.appendChild(listItem);
+  });
+}
+
 
 testXML();
