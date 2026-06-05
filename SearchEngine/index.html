@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vite-project</title>
-  </head>
-  <body>
-    <header class="navbar">
-      <h1>Navbar</h1>
-    </header>
-    <div id="app"></div>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vite-project</title>
+</head>
+
+<body>
+  <header class="navbar">
+    <h1>Navbar</h1>
+  </header>
+  <div id="app"></div>
 
 
-   <main class="SearchEngine">
+  <main class="SearchEngine">
     <div id="Search">
-     <h1> Search Engine </h1>
-      </div>
-     <div id="dropdown-container">
-        <form id="searchForm">
-          <input type="text" id="searchInput">
-  <select id="attribute">
-    <option value="lemma">WordForm</option>
-  </select>
+      <h1> Search Engine </h1>
+    </div>
+    <div id="dropdown-container">
+      <form id="searchForm">
+        <input type="text" id="searchInput">
+        <select id="attribute">
+          <option value="root">Root</option>
+        </select>
 
-<!-- Okay i think we need to change the values to filter by each specific version but okay -->
-  <!-- <select id="selectAttribute">
-    <option value="value">Root</option>
-    <option value="value">Tense</option>
-    <option value="value">Parse</option>
-    <option value="value">Preverb</option>
-    <option value="value">Time Reference</option>
-    <option value="value">Gloss</option>
+        <!-- Okay i think we need to change the values to filter by each specific version but okay -->
+        <!-- <select id="selectAttribute">
+        <option value="value">Root</option>
+        <option value="value">Tense</option>
+        <option value="value">Parse</option>
+        <option value="value">Preverb</option>
+        <option value="value">Time Reference</option>
+        <option value="value">Gloss</option>
 
-  </select>
--->
-
-
-  <button type="submit">Search</button>
-</form>
-     </div>
-   </main>
-   <div id="Results">
-                 <h2> Results:</h2>
-                 <ul id="wordFormList">
-                   </ul>
-              </div>
+       </select>
+       -->
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </main>
+  <div id="Results">
+    <h2> Results:</h2>
+    <ul id="wordFormList">
+    </ul>
+  </div>
   <script type="module" src="/src/main.js"></script>
-  </body>
-</html>
+</body>
 
+</html>
