@@ -23,19 +23,24 @@
       <form id="searchForm">
         <input type="text" id="searchInput"><select id="attribute">
           <option value="root"> word/root</option>
+
         </select>
+       <div class="filter-box">
+          <p>Filters</p>
 
-        <!-- Okay i think we need to change the values to filter by each specific version but okay -->
-        <!-- <select id="selectAttribute">
-        <option value="value">Root</option>
-        <option value="value">Tense</option>
-        <option value="value">Parse</option>
-        <option value="value">Preverb</option>
-        <option value="value">Time Reference</option>
-        <option value="value">Gloss</option>
+    <div class="filter-scroll">
+    <label><input type="checkbox" value="hab"> Habitual</label>
+     <label><input type="checkbox" value="exp"> Experiential</label>
+    <label><input type="checkbox" value="rptv"> Reportive</label>
+    <label><input type="checkbox" value="term"> Terminative</label>
+    <label><input type="checkbox" value="gnom"> Gnomic</label>
+    <label><input type="checkbox" value="univ"> Universal</label>
+    <label><input type="checkbox" value="ipfv"> Imperfective</label>
+    <label><input type="checkbox" value="aug"> Augmented</label>
+  </div>
+</div>
 
-       </select>
-       -->
+
         <button type="submit">Search</button>
       </form>
     </div>

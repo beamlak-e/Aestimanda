@@ -10,17 +10,28 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   /////changes search input to lowercase so values arents filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
  
-  ///logs on console 
-  console.log("Search term:", searchTerm);
 
+  const selectedFilters = Array.from(
+    document.querySelectorAll(".filter-scroll input:checked")
+  ).map((checkbox) => checkbox.value);
 
-  const matches = verbData.filter((verb) => {
-    ///check if roots equal what user typed
-    return verb.root?.trim().toLowerCase() === searchTerm;
+   //// changes output to lowercase so values arent filtered out 
+   const matches = verbData.filter((verb) => {
+    const matchesRoot =
+      verb.root?.trim().toLowerCase() === searchTerm;
+     
+    /// If clicked its true so abtituary value should be 1 
+    const matchesFilters = selectedFilters.every((filter) => {
+      return verb[filter] === "1";
+    });
+
+      return matchesRoot && matchesFilters;
   });
 
   ///again logs on console 
   console.log("Matches:", matches);
+  console.log("Selected Filters:", selectedFilters)
+  console.log("Search term:", searchTerm);
 
   const groupedResults = groupWordForms(matches);
   
@@ -52,7 +63,17 @@ async function testXML() {
     const wordForm = verb.textContent.trim();
     const root = verb.getAttribute("root");
     const gloss = verb.getAttribute("gloss");
-   
+
+    ////storing filter attributes 
+    const hab = verb.getAttribute("hab"); 
+    const exp = verb.getAttribute("exp"); 
+    const rptv = verb.getAttribute("rptv"); 
+    const term = verb.getAttribute("term"); 
+    const gnom = verb.getAttribute("gnom");
+    const univ = verb.getAttribute("univ");
+    //new one 
+    const ipfv = verb.getAttribute("ipfv"); 
+    const aug = verb.getAttribute("aug"); 
     
     const pada = verb.parentElement; 
     //gets pada id (the numbers line refrence)
@@ -65,7 +86,16 @@ async function testXML() {
       root: root,
       gloss: gloss,   ///does nothing right now :3 
       padaId : padaId,
-      padaText: padaText
+      padaText: padaText,
+      hab,
+      exp, 
+      rptv, 
+      term, 
+      gnom, 
+      univ, 
+      ipfv, 
+      aug
+
     });
   });
 
