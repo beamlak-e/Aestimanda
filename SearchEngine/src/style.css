@@ -108,3 +108,16 @@ h1 {
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+.filter.box{ 
+  width:250px; 
+  border: 1px solid #181717; 
+  padding: 10px; 
+} 
+
+.filter-scroll{ 
+max-height: 120px; 
+overflow-y: auto;
+display: flex;
+}
