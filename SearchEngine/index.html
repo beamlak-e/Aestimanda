@@ -28,33 +28,86 @@
        <!-- creating a bdy group to try to get it all in a flex row -->
       <div class="form-box">
       <div class="form-filter-panel">
-        <div class="form-filter-group">
+
+       <div class="form-filter-group">
           <h4>Tense</h4>
            <div class="option-box">
-            <p> pres</p>
-            <p> imperf</p>
-            <p> fut</p>
-            <p> aor</p>
-            <p> perf</p>
+            <label>
+          <input type="checkbox" name="tense[]" value="pres">
+          pres
+        </label>
+        <label>
+          <input type="checkbox" name="tense[]" value="imperf">
+            imperf
+          </label>
+        <label>
+          <input type="checkbox" name="tense[]" value="fut">
+          fut
+        </label>
+        <label>
+          <input type="checkbox" name="tense[]" value="aor">
+          aor
+        </label>
             </div>
           </div>
         </div>
 
+
        <div class="form-filter-group">
         <h4>Mood</h4>
        <div class="option-box">
-        <p> ind</p>
-        <p> subj</p>
-        <p> opt</p>
-        <p> imper</p>
+        <label>
+          <input type="checkbox" name="mood[]" value="ind">
+          ind
+        </label>
+        <label>
+          <input type="checkbox" name="mood[]" value="sjv">
+          sjv
+        </label>
+        <label>
+          <input type="checkbox" name="mood[]" value="opt">
+          opt
+        </label>
         </div>
        </div>
+
+       <div class="form-filter-group">
+        <h4>Case</h4>
+       <div class="option-box">
+        <label>
+          <input type="checkbox" name="casee[]" value="nom">
+          nom
+        </label>
+        <label>
+          <input type="checkbox" name="casee[]" value="gen">
+          gen
+        </label>
+        <label>
+          <input type="checkbox" name="casee[]" value="dat">
+          dat
+        </label>
+        <label>
+          <input type="checkbox" name="casee[]" value="acc">
+          acc
+        </label>
+        </div>
+       </div>
+
       <div class="form-filter-group">
        <h4>Voice</h4>
       <div class="option-box">
-      <p> act</p>
-      <p>mid</p>
-      <p> psv</p>
+        <label>
+          <input type="checkbox" name="voice[]" value="act">
+          act
+        </label>
+        <label>
+          <input type="checkbox" name="voice[]" value="mid">
+          mid
+        </label>
+        <label>
+          <input type="checkbox" name="voice[]" value="psv">
+          pass
+        </label>
       </div>
       </div>
       </div>
