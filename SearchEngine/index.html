@@ -10,14 +10,13 @@
 
 <body>
   <header class="navbar">
-    <h1>Navbar</h1>
+    <h3>Navbar</h3>
   </header>
   <div id="app"></div>
 
-
   <main class="SearchEngine">
     <div id="Search">
-      <h1> Search Engine </h1>
+      <h3> Search Engine </h3>
     </div>
     <div id="dropdown-container">
       <form id="searchForm">
@@ -25,9 +24,97 @@
           <option value="root"> word/root</option>
 
         </select>
+
+       <!-- creating a bdy group to try to get it all in a flex row -->
+      <div class="form-box">
+      <div class="form-filter-panel">
+
+       <div class="form-filter-group">
+          <h4>Tense</h4>
+           <div class="option-box">
+            <label>
+          <input type="checkbox" name="tense[]" value="pres">
+          pres
+        </label>
+        <label>
+          <input type="checkbox" name="tense[]" value="imperf">
+            imperf
+          </label>
+        <label>
+          <input type="checkbox" name="tense[]" value="fut">
+          fut
+        </label>
+        <label>
+          <input type="checkbox" name="tense[]" value="aor">
+          aor
+        </label>
+            </div>
+          </div>
+        </div>
+
+
+       <div class="form-filter-group">
+        <h4>Mood</h4>
+       <div class="option-box">
+        <label>
+          <input type="checkbox" name="mood[]" value="ind">
+          ind
+        </label>
+        <label>
+          <input type="checkbox" name="mood[]" value="sjv">
+          sjv
+        </label>
+        <label>
+          <input type="checkbox" name="mood[]" value="opt">
+          opt
+        </label>
+        </div>
+       </div>
+
+       <div class="form-filter-group">
+        <h4>Case</h4>
+       <div class="option-box">
+        <label>
+          <input type="checkbox" name="casee[]" value="nom">
+          nom
+        </label>
+        <label>
+          <input type="checkbox" name="casee[]" value="gen">
+          gen
+        </label>
+        <label>
+          <input type="checkbox" name="casee[]" value="dat">
+          dat
+        </label>
+        <label>
+          <input type="checkbox" name="casee[]" value="acc">
+          acc
+        </label>
+        </div>
+       </div>
+
+      <div class="form-filter-group">
+       <h4>Voice</h4>
+      <div class="option-box">
+        <label>
+          <input type="checkbox" name="voice[]" value="act">
+          act
+        </label>
+        <label>
+          <input type="checkbox" name="voice[]" value="mid">
+          mid
+        </label>
+        <label>
+          <input type="checkbox" name="voice[]" value="psv">
+          pass
+        </label>
+      </div>
+      </div>
+      </div>
+
+
        <div class="filter-box">
           <p>Filters</p>
-
     <div class="filter-scroll">
     <label><input type="checkbox" value="hab"> Habitual</label>
      <label><input type="checkbox" value="exp"> Experiential</label>
@@ -38,7 +125,7 @@
     <label><input type="checkbox" value="ipfv"> Imperfective</label>
     <label><input type="checkbox" value="aug"> Augmented</label>
   </div>
-</div>
+  </div>
 
 
         <button type="submit">Search</button>
