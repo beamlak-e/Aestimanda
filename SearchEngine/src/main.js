@@ -15,14 +15,16 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     document.querySelectorAll(".filter-scroll input:checked")
   ).map((checkbox) => checkbox.value);
 
-
+ 
+  ///VOICE
      /////finds checkboxes that have name vvoices
     const selectedVoice = Array.from(
       document.querySelectorAll("input[name='voice[]']:checked"))
       ////loops though checkboxe grads spefic data values like m and put them in a list 
       ////puts them into variable const selectedVOices 
       .map((checkbox=> checkbox.value));
-     
+    
+   ///MOOD 
    ////uh changing a couple of vlaue hopeufllly it works 
      /////finds checkboxes that have name vvoices
     const selectedMood = Array.from(
@@ -31,16 +33,12 @@ document.getElementById('searchForm').addEventListener('submit', function (event
       ////puts them into variable const selectedVOices 
       .map((checkbox=> checkbox.value));
       
+    /////GENDER 
+    const selectedGender = Array.from(
+      document.querySelectorAll("input[name='gender[]']:checked"))
+      .map((checkbox=>checkbox.value));
     
-      /////tense[]
-    //const selectedTense = Array.from(
-    //  document.querySelectorAll("input[name='tense[]']:checked"))
-      ////loops though checkboxe grads spefic data values like m and put them in a list 
-      ////puts them into variable const selectedVOices 
-    //  .map((checkbox=> checkbox.value));
-
-
-    /// case case[] 
+    /// CASE 
     const selectedCasee = Array.from(
       document.querySelectorAll("input[name='casee[]']:checked"))
       .map((checkbox=> checkbox.value));
@@ -71,18 +69,19 @@ document.getElementById('searchForm').addEventListener('submit', function (event
       return verb.parse?.includes(mood); 
     });
 
-   /// const matchesTense = 
-   ///  selectedTense.length ===0 || selectedTense.some((tense)=> {
-      /////loos inside verb/// bamli ?. checks if a porperty exists without checking code 
-   //   return verb.parse?.includes(tense); 
-   // });
    const matchesCasee = 
      selectedCasee.length ===0 || selectedCasee.some((casee)=> {
       return verb.parse?.includes(casee); 
     });
+
+  ///GENDER 
+  const matchesGender = 
+  selectedGender.length ===0 || selectedGender.some((gender)=> {
+    return verb.parse?.includes(gender); 
+  }); 
      console.log(verb.parse);
 
-      return matchesRoot && matchesFilters && matchesVoice &&matchesMood && matchesCasee;
+      return matchesRoot && matchesFilters && matchesVoice &&matchesMood && matchesCasee && matchesGender;
   });
 
   ///again logs on console 
