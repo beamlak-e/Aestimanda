@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vite-project</title>
 </head>
+<!-- correct file -->
 
 <body>
   <header class="navbar">
@@ -25,128 +26,189 @@
 
         </select>
 
-       <!-- creating a bdy group to try to get it all in a flex row -->
-      <div class="form-box">
-      <div class="form-filter-panel">
-       <!-- TENSE  -->
-       <div class="form-filter-group">
-          <h4>Tense</h4>
-           <div class="option-box">
-            <label>
-          <input type="checkbox" name="tense[]" value="pres">
-          pres
-        </label>
-        <label>
-          <input type="checkbox" name="tense[]" value="imperf">
-            imperf
-          </label>
-        <label>
-          <input type="checkbox" name="tense[]" value="fut">
-          fut
-        </label>
-        <label>
-          <input type="checkbox" name="tense[]" value="aor">
-          aor
-        </label>
+        <!-- creating a bdy group to try to get it all in a flex row -->
+        <div class="form-box">
+          <div class="form-filter-panel">
+            <!-- TENSE  -->
+            <div class="form-filter-group">
+              <h4>Tense</h4>
+              <div class="option-box">
+                <label>
+                  <input type="checkbox" name="tensev[]" value="Aor">
+                  aor
+                </label>
+                <label>
+                  <input type="checkbox" name="tensev[]" value="Pres">
+                  present
+                </label>
+                <label>
+                  <input type="checkbox" name="tensev[]" value="Ipf">
+                  imperfect
+                </label>
+                <label>
+                  <input type="checkbox" name="tensev[]" value="Plpf">
+                  pluperfect
+                </label>
+                <label>
+                  <input type="checkbox" name="tensev[]" value="Pf">
+                  perfect
+                </label>
+              </div>
             </div>
-          </div>
-        </div>
-        <!-- Mood  -->
-        <div class="form-filter-group">
-        <h4>Mood</h4>
-       <div class="option-box">
-        <label>
-          <input type="checkbox" name="mood[]" value="ind">
-          ind
-        </label>
-        <label>
-          <input type="checkbox" name="mood[]" value="sjv">
-          sjv
-        </label>
-        <label>
-          <input type="checkbox" name="mood[]" value="opt">
-          opt
-        </label>
-        </div>
-       </div>
-        <!-- Voice  -->
-        <div class="form-filter-group">
-       <h4>Voice</h4>
-      <div class="option-box">
-        <label>
-          <input type="checkbox" name="voice[]" value="act">
-          act
-        </label>
-        <label>
-          <input type="checkbox" name="voice[]" value="mid">
-          mid
-        </label>
-        <label>
-          <input type="checkbox" name="voice[]" value="psv">
-          pass
-        </label>
-      </div>
-      </div>
-       <!-- Case  -->
+          <!-- Usage  -->
            <div class="form-filter-group">
-        <h4>Case</h4>
-       <div class="option-box">
-        <label>
-          <input type="checkbox" name="casee[]" value="nom">
-          nom
-        </label>
-        <label>
-          <input type="checkbox" name="casee[]" value="gen">
-          gen
-        </label>
-        <label>
-          <input type="checkbox" name="casee[]" value="dat">
-          dat
-        </label>
-        <label>
-          <input type="checkbox" name="casee[]" value="acc">
-          acc
-        </label>
-        </div>
-       </div>
-
-       <!-- Gender  -->
-        <div class="form-filter-group">
-          <h4>Gender</h4>
-           <div class="option-box">
-            <label>
-          <input type="checkbox" name="gender[]" value="m">
-          Masculine
-        </label>
-        <label>
-          <input type="checkbox" name="gender[]" value="f">
-            Feminine
-          </label>
-        <label>
-          <input type="checkbox" name="gender[]" value="n">
-          Neutral
-        </label>
+            <h4>Usage</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="usage[]" value="past">
+                Past
+              </label>
+              <label>
+                <input type="checkbox" name="usage[]" value="present">
+                Present
+              </label>
+              <label>
+                <input type="checkbox" name="usage[]" value="future">
+                Future
+              </label>
             </div>
           </div>
+          <!-- Mood  -->
+          <div class="form-filter-group">
+            <h4>Mood</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="mood[]" value="ind">
+                ind
+              </label>
+              <label>
+                <input type="checkbox" name="mood[]" value="sjv">
+                sjv
+              </label>
+              <label>
+                <input type="checkbox" name="mood[]" value="opt">
+                opt
+              </label>
+            </div>
+          </div>
+          <!-- Voice  -->
+          <div class="form-filter-group">
+            <h4>Voice</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="voice[]" value="act">
+                act
+              </label>
+              <label>
+                <input type="checkbox" name="voice[]" value="mid">
+                mid
+              </label>
+              <label>
+                <input type="checkbox" name="voice[]" value="psv">
+                pass
+              </label>
+            </div>
+          </div>
+          <!-- Case  -->
+          <div class="form-filter-group">
+            <h4>Case</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="casee[]" value="nom">
+                nom
+              </label>
+              <label>
+                <input type="checkbox" name="casee[]" value="gen">
+                gen
+              </label>
+              <label>
+                <input type="checkbox" name="casee[]" value="dat">
+                dat
+              </label>
+              <label>
+                <input type="checkbox" name="casee[]" value="acc">
+                acc
+              </label>
+            </div>
+          </div>
+
+          <!-- Gender  -->
+          <div class="form-filter-group">
+            <h4>Gender</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="gender[]" value="m">
+                Masculine
+              </label>
+              <label>
+                <input type="checkbox" name="gender[]" value="f">
+                Feminine
+              </label>
+              <label>
+                <input type="checkbox" name="gender[]" value="n">
+                Neutral
+              </label>
+            </div>
+          </div>
+
+          <!-- Person  -->
+          <div class="form-filter-group">
+            <h4>Person</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="person[]" value="1">
+                1st
+              </label>
+              <label>
+                <input type="checkbox" name="person[]" value="2">
+                2nd
+              </label>
+              <label>
+                <input type="checkbox" name="person[]" value="3">
+                3rd
+              </label>
+            </div>
+          </div>
+          <!-- Number  -->
+
+          <div class="form-filter-group">
+            <h4>Number</h4>
+            <div class="option-box">
+              <label>
+                <input type="checkbox" name="number[]" value="sg">
+                Singular
+              </label>
+              <label>
+                <input type="checkbox" name="number[]" value="pl">
+                Plural
+              </label>
+              <label>
+                <input type="checkbox" name="number[]" value="du">
+                Dual
+              </label>
+            </div>
+          </div>
+          </div>
+
         </div>
 
 
 
 
 
-       <div class="filter-box">
+        <div class="filter-box">
           <p>Filters</p>
-    <div class="filter-scroll">
-    <label><input type="checkbox" value="hab"> Habitual</label>
-     <label><input type="checkbox" value="exp"> Experiential</label>
-    <label><input type="checkbox" value="rptv"> Reportive</label>
-    <label><input type="checkbox" value="term"> Terminative</label>
-    <label><input type="checkbox" value="gnom"> Gnomic</label>
-    <label><input type="checkbox" value="univ"> Universal</label>
-    <label><input type="checkbox" value="ipfv"> Imperfective</label>
-    <label><input type="checkbox" value="aug"> Augmented</label>
-  </div>
-  </div>
+          <div class="filter-scroll">
+            <label><input type="checkbox" value="hab"> Habitual</label>
+            <label><input type="checkbox" value="exp"> Experiential</label>
+            <label><input type="checkbox" value="rptv"> Reportive</label>
+            <label><input type="checkbox" value="term"> Terminative</label>
+            <label><input type="checkbox" value="gnom"> Gnomic</label>
+            <label><input type="checkbox" value="univ"> Universal</label>
+            <label><input type="checkbox" value="ipfv"> Imperfective</label>
+            <label><input type="checkbox" value="aug"> Augmented</label>
+          </div>
+        </div>
 
 
         <button type="submit">Search</button>
