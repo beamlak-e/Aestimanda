@@ -51,14 +51,14 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   const selectedPerson = Array.from(
     document.querySelectorAll("input[name='person[]']:checked"))
     .map((checkbox => checkbox.value));
-  
-    ///tense
+
+  ///tense
   const selectedTensev = Array.from(
     document.querySelectorAll("input[name='tensev[]']:checked"))
     .map((checkbox => checkbox.value));
 
-   ///time 
-  const selectedUsage= Array.from(
+  ///time 
+  const selectedUsage = Array.from(
     document.querySelectorAll("input[name='usage[]']:checked"))
     .map((checkbox => checkbox.value));
 
@@ -110,7 +110,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         return verb.parse?.includes(person);
       });
 
-      ///tense 
+    ///tense 
     const matchesTensev =
       selectedTensev.length === 0 || selectedTensev.some((tensev) => {
         return verb.tense?.includes(tensev);
@@ -121,10 +121,10 @@ document.getElementById('searchForm').addEventListener('submit', function (event
       selectedUsage.length === 0 || selectedUsage.some((usage) => {
         return verb.time?.includes(usage);
       });
-    
+
     console.log(verb.parse);
     console.log(verb.tense);
-    console.log(verb.time); 
+    console.log(verb.time);
 
     return matchesRoot && matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage;
   });
@@ -185,8 +185,8 @@ async function testXML() {
     ///where we are going to add the form of word code 
     const parse = verb.getAttribute("parse");
     ////new code 
-    const tense = verb.getAttribute("tense"); 
-    const time = verb.getAttribute("time"); 
+    const tense = verb.getAttribute("tense");
+    const time = verb.getAttribute("time");
 
     ///pushes it 
     verbData.push({
@@ -204,7 +204,7 @@ async function testXML() {
       ipfv,
       aug,
       parse: parse,
-      tense: tense, 
+      tense: tense,
       time: time
 
     });
