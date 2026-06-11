@@ -125,6 +125,8 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
+    console.log(verb.trans); 
+    
 
     return matchesRoot && matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage;
   });
@@ -186,7 +188,8 @@ async function testXML() {
     const parse = verb.getAttribute("parse");
     ////new code 
     const tense = verb.getAttribute("tense");
-    const time = verb.getAttribute("time");
+    const time = verb.getAttribute("time"); 
+    const trans = verb.getAttribute("trans"); 
 
     ///pushes it 
     verbData.push({
@@ -205,12 +208,14 @@ async function testXML() {
       aug,
       parse: parse,
       tense: tense,
-      time: time
+      time: time, 
+      trans: trans
 
     });
   });
 
-  console.log("Verb data loaded:", verbData);
+  console.log("Verb data loaded:", verbData); 
+  console.log(root); ///okay now display this 
 }
 
 // Group duplicate word forms and count them
@@ -251,19 +256,22 @@ function displayResults(results) {
   results.forEach((verb) => {
     const listItem = document.createElement("li");
     const link = document.createElement("a");
+ 
 
 
     link.href = "#";
+    
     link.textContent = `${verb.wordForm} (${verb.count})`;
+
 
     link.addEventListener("click", function (event) {
       event.preventDefault();
       console.log("Clicked word form:", verb.wordForm);
       showOccurrencesForWordForm(verb.wordForm);
+    
     });
     listItem.appendChild(link);
-    //listItem.textContent =
-    // `${verb.wordForm} (${verb.count}) `;
+
     wordFormList.appendChild(listItem);
   });
 }
@@ -285,10 +293,10 @@ function displayOccurrences(occurrences) {
 
   occurrences.forEach((verb) => {
     const listItem = document.createElement("li");
-    ////combines the line refrence with the context lines 
-    listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
 
+    listItem.textContent = `${verb.padaId}: ${verb.padaText} : ${verb.trans} : ${verb.gloss}`;
     wordFormList.appendChild(listItem);
+
   });
 }
 
