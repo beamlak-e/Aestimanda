@@ -1,35 +1,29 @@
 import './style.css';
 
-///creates empty array that we later store are stugg from 
+///creates empty array that we later store string from 
 let verbData = [];
 
 /// when we press submit 
 document.getElementById('searchForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  /////changes search input to lowercase so values arents filtered out 
+  /////changes search input to lowercase so values arent filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
-
-
+  
   const selectedFilters = Array.from(
     document.querySelectorAll(".filter-scroll input:checked")
   ).map((checkbox) => checkbox.value);
 
-
   ///VOICE
   const selectedVoice = Array.from(
     document.querySelectorAll("input[name='voice[]']:checked"))
-    ////loops though checkboxe grads spefic data values like m and put them in a list 
-    ////puts them into variable const selectedVOices 
+    ////loops though checkbox grabs spefic data values like m and put them in a list 
+    ////puts them into variable const selectedvoices
     .map((checkbox => checkbox.value));
 
   ///MOOD 
-  ////uh changing a couple of vlaue hopeufllly it works 
-  /////finds checkboxes that have name vvoices
   const selectedMood = Array.from(
     document.querySelectorAll("input[name='mood[]']:checked"))
-    ////loops though checkboxe grads spefic data values like m and put them in a list 
-    ////puts them into variable const selectedVOices 
     .map((checkbox => checkbox.value));
 
   /////GENDER 
@@ -42,7 +36,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     document.querySelectorAll("input[name='casee[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  /// Number  number[] 
+  /// Number
   const selectedNumber = Array.from(
     document.querySelectorAll("input[name='number[]']:checked"))
     .map((checkbox => checkbox.value));
@@ -62,11 +56,17 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     document.querySelectorAll("input[name='usage[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  //// changes output to lowercase so values arent filtered out 
+   const selectedPvv = Array.from(
+    document.querySelectorAll("input[name='pvv[]']:checked"))
+    .map((checkbox => checkbox.value));
+
+
+  //// changes output to lowercase so values aren't filtered out 
   const matches = verbData.filter((verb) => {
     const matchesRoot =
+    ///if either || are true/ searchTerm === "" basically equates it to a match when its empty (so it can not return blank)
+    searchTerm === "" ||
       verb.root?.trim().toLowerCase() === searchTerm;
-
 
     /// If clicked its true so abtituary value should be 1 
     const matchesFilters = selectedFilters.every((filter) => {
@@ -87,6 +87,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         return verb.parse?.includes(mood);
       });
 
+    // TT 
     const matchesCasee =
       selectedCasee.length === 0 || selectedCasee.some((casee) => {
         return verb.parse?.includes(casee);
@@ -103,48 +104,47 @@ document.getElementById('searchForm').addEventListener('submit', function (event
       selectedNumber.length === 0 || selectedNumber.some((number) => {
         return verb.parse?.includes(number);
       });
-
     ///Person 
     const matchesPerson =
       selectedPerson.length === 0 || selectedPerson.some((person) => {
         return verb.parse?.includes(person);
       });
-
     ///tense 
     const matchesTensev =
       selectedTensev.length === 0 || selectedTensev.some((tensev) => {
         return verb.tense?.includes(tensev);
       });
-
     //usage
     const matchesUsage =
       selectedUsage.length === 0 || selectedUsage.some((usage) => {
         return verb.time?.includes(usage);
       });
 
+    const matchesPvv =
+      selectedPvv.length === 0 || selectedPvv.some((pvv) => {
+        return verb.pv?.includes(pvv);
+      });
+
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
     console.log(verb.trans); 
+    console.log(verb.pvv); 
     
 
-    return matchesRoot && matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage;
+    return matchesRoot && matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv;
   });
 
-  ///again logs on console 
+  ///console logs 
   console.log("Matches:", matches);
   console.log("Selected Filters:", selectedFilters)
   console.log("Search term:", searchTerm);
-
-
   const groupedResults = groupWordForms(matches);
-
-  displayResults(groupedResults);
+  displayResults(groupedResults, searchTerm);
 });
 
 
-// LOOOK HERE IF YOU WANT TO SEE WHERE JS -> 
-// Load and process XML file ///Test cases 
+ // Load and process XML file ///Test cases 
 async function testXML() {
   const response = await fetch("/RV2.xml"); ////fetches rv2 file 
   const xmlText = await response.text();
@@ -158,16 +158,14 @@ async function testXML() {
   );
 
   const verbs = xmlDoc.querySelectorAll("Verb, Verbal");
-
   ///finds verb element in xml 
   verbData = [];
 
-  ////takes that long string and gets the indivual roots, gloss 
+  ////takes that long string and gets the individual roots, gloss 
   verbs.forEach((verb) => {
     const wordForm = verb.textContent.trim();
     const root = verb.getAttribute("root");
     const gloss = verb.getAttribute("gloss");
-
     ////storing filter attributes 
     const hab = verb.getAttribute("hab");
     const exp = verb.getAttribute("exp");
@@ -175,21 +173,17 @@ async function testXML() {
     const term = verb.getAttribute("term");
     const gnom = verb.getAttribute("gnom");
     const univ = verb.getAttribute("univ");
-    //new one 
     const ipfv = verb.getAttribute("ipfv");
     const aug = verb.getAttribute("aug");
-
-    const pada = verb.parentElement;
-    //gets pada id (the numbers line refrence)
-    const padaId = pada.getAttribute("id");
+    const pada = verb.parentElement; 
+    const padaId = pada.getAttribute("id");  //gets pada id (the numbers line refrence)
     const padaText = pada.textContent.trim();
-
-    ///where we are going to add the form of word code 
     const parse = verb.getAttribute("parse");
-    ////new code 
     const tense = verb.getAttribute("tense");
     const time = verb.getAttribute("time"); 
     const trans = verb.getAttribute("trans"); 
+    const pv = verb.getAttribute("pv"); 
+
 
     ///pushes it 
     verbData.push({
@@ -209,19 +203,18 @@ async function testXML() {
       parse: parse,
       tense: tense,
       time: time, 
-      trans: trans
+      trans: trans,
+      pv: pv
 
     });
   });
 
   console.log("Verb data loaded:", verbData); 
-  console.log(root); ///okay now display this 
 }
 
-// Group duplicate word forms and count them
+// Group duplicate word forms and count them 
 function groupWordForms(matches) {
   const grouped = {};
-
 
   matches.forEach((verb) => {
     if (!grouped[verb.wordForm]) {
@@ -232,18 +225,19 @@ function groupWordForms(matches) {
         count: 0
       };
     }
-
     grouped[verb.wordForm].count++;
   });
-
   return Object.values(grouped);
 }
 
 // Display results on page
-function displayResults(results) {
+function displayResults(results, searchTerm ) {
   const wordFormList = document.getElementById("wordFormList");
-
   wordFormList.innerHTML = "";
+ 
+  const heading = document.createElement("h4"); 
+  heading.textContent = `Results for roots: ${searchTerm}`; //display search term 
+  wordFormList.appendChild(heading); 
 
   //// will return no matches if no mathces found 
   if (results.length === 0) {
@@ -251,24 +245,25 @@ function displayResults(results) {
     listItem.textContent = "No results found.";
     wordFormList.appendChild(listItem);
     return;
-  }
-
+  } 
+  // empty + filter -> results for selected filter. root-> result for root
+  if (searchTerm === "") {
+  heading.textContent = "Results for selected filters:";
+} else {
+  heading.textContent = `Results for root: ${searchTerm}`;
+}
   results.forEach((verb) => {
+    
     const listItem = document.createElement("li");
     const link = document.createElement("a");
  
-
-
     link.href = "#";
-    
     link.textContent = `${verb.wordForm} (${verb.count})`;
-
 
     link.addEventListener("click", function (event) {
       event.preventDefault();
       console.log("Clicked word form:", verb.wordForm);
       showOccurrencesForWordForm(verb.wordForm);
-    
     });
     listItem.appendChild(link);
 
@@ -288,14 +283,20 @@ function showOccurrencesForWordForm(wordForm) {
 
 function displayOccurrences(occurrences) {
   const wordFormList = document.getElementById("wordFormList");
-
   wordFormList.innerHTML = "";
 
+  const firstVerb = occurrences[0]; ///grabs first gloss result
+  const glossHeading = document.createElement("h4"); 
+  glossHeading.textContent = `Gloss: ${firstVerb.gloss}`; 
+  wordFormList.appendChild(glossHeading);
+  
   occurrences.forEach((verb) => {
     const listItem = document.createElement("li");
-
-    listItem.textContent = `${verb.padaId}: ${verb.padaText} : ${verb.trans} : ${verb.gloss}`;
+    listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
+    const etrans = document.createElement("h4"); 
+    etrans.textContent = `Translation: ${verb.trans}`; 
     wordFormList.appendChild(listItem);
+    wordFormList.appendChild(etrans); 
 
   });
 }
