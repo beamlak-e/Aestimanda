@@ -156,3 +156,18 @@ h1 {
   flex-direction: row;
   margin-top: 30px;
 }
+
+.p.box {
+  width: 250px;
+  border: 1px solid #181717;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-scroll {
+  max-height: 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
