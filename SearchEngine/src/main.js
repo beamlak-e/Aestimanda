@@ -9,7 +9,8 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
   /////changes search input to lowercase so values arent filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
-  
+
+  const selectedAttribute = document.getElementById("attribute").value
   const selectedFilters = Array.from(
     document.querySelectorAll(".filter-scroll input:checked")
   ).map((checkbox) => checkbox.value);
@@ -56,17 +57,17 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     document.querySelectorAll("input[name='usage[]']:checked"))
     .map((checkbox => checkbox.value));
 
-   const selectedPvv = Array.from(
+  const selectedPvv = Array.from(
     document.querySelectorAll("input[name='pvv[]']:checked"))
     .map((checkbox => checkbox.value));
 
 
   //// changes output to lowercase so values aren't filtered out 
   const matches = verbData.filter((verb) => {
-    const matchesRoot =
-    ///if either || are true/ searchTerm === "" basically equates it to a match when its empty (so it can not return blank)
-    searchTerm === "" ||
-      verb.root?.trim().toLowerCase() === searchTerm;
+      const matchesSearch =
+      ///searchTerm === "" (so when we put it as balnk someitmes for search it doesnt tweak out and states it as valid)
+            searchTerm === "" ||
+            verb[selectedAttribute]?.trim().toLowerCase() === searchTerm; ////gets selected attribute if root selected root. wordform wordform 
 
     /// If clicked its true so abtituary value should be 1 
     const matchesFilters = selectedFilters.every((filter) => {
@@ -75,7 +76,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
     /// creates truth/false variable
     const matchesVoice =
-      ////selcected vpoice= 0 checks if user selected nothing if so 0, shows no filters are chosen
+      ////selected voice= 0 checks if user selected nothing if so 0, shows no filters are chosen
       selectedVoice.length === 0 || selectedVoice.some((voice) => {
         /////loos inside verb/// bamli ?. checks if a porperty exists without checking code 
         return verb.parse?.includes(voice);
@@ -128,11 +129,11 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
-    console.log(verb.trans); 
-    console.log(verb.pvv); 
-    
+    console.log(verb.trans);
+    console.log(verb.pvv);
 
-    return matchesRoot && matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv;
+   ///matches search is the nww one -> replaced matchesRoot since we now have two types of searches 
+    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch;
   });
 
   ///console logs 
@@ -140,11 +141,11 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   console.log("Selected Filters:", selectedFilters)
   console.log("Search term:", searchTerm);
   const groupedResults = groupWordForms(matches);
-  displayResults(groupedResults, searchTerm);
+  displayResults(groupedResults, searchTerm, selectedAttribute); ///now passing selectAttribute 
 });
 
 
- // Load and process XML file ///Test cases 
+// Load and process XML file ///Test cases 
 async function testXML() {
   const response = await fetch("/RV2.xml"); ////fetches rv2 file 
   const xmlText = await response.text();
@@ -175,14 +176,14 @@ async function testXML() {
     const univ = verb.getAttribute("univ");
     const ipfv = verb.getAttribute("ipfv");
     const aug = verb.getAttribute("aug");
-    const pada = verb.parentElement; 
+    const pada = verb.parentElement;
     const padaId = pada.getAttribute("id");  //gets pada id (the numbers line refrence)
     const padaText = pada.textContent.trim();
     const parse = verb.getAttribute("parse");
     const tense = verb.getAttribute("tense");
-    const time = verb.getAttribute("time"); 
-    const trans = verb.getAttribute("trans"); 
-    const pv = verb.getAttribute("pv"); 
+    const time = verb.getAttribute("time");
+    const trans = verb.getAttribute("trans");
+    const pv = verb.getAttribute("pv");
 
 
     ///pushes it 
@@ -202,14 +203,14 @@ async function testXML() {
       aug,
       parse: parse,
       tense: tense,
-      time: time, 
+      time: time,
       trans: trans,
-      pv: pv
+      pv: pv ////preverb 
 
     });
   });
 
-  console.log("Verb data loaded:", verbData); 
+  console.log("Verb data loaded:", verbData);
 }
 
 // Group duplicate word forms and count them 
@@ -230,14 +231,14 @@ function groupWordForms(matches) {
   return Object.values(grouped);
 }
 
-// Display results on page
-function displayResults(results, searchTerm ) {
+// Display results on page 
+function displayResults(results, searchTerm, selectAttribute) { ///pushes selectAttribute now (wordForm, root)
   const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
- 
-  const heading = document.createElement("h4"); 
+
+  const heading = document.createElement("h4");
   heading.textContent = `Results for roots: ${searchTerm}`; //display search term 
-  wordFormList.appendChild(heading); 
+  wordFormList.appendChild(heading);
 
   //// will return no matches if no mathces found 
   if (results.length === 0) {
@@ -245,18 +246,22 @@ function displayResults(results, searchTerm ) {
     listItem.textContent = "No results found.";
     wordFormList.appendChild(listItem);
     return;
-  } 
+  }
   // empty + filter -> results for selected filter. root-> result for root
   if (searchTerm === "") {
-  heading.textContent = "Results for selected filters:";
-} else {
-  heading.textContent = `Results for root: ${searchTerm}`;
-}
+    heading.textContent = "Results for selected filters:";
+  }else if(selectAttribute === "wordForm"){
+    heading.textContent = `Results for word form: ${searchTerm}`;
+  }else {
+    heading.textContent = `Results for root: ${searchTerm}`;
+  }
+
+  wordFormList.appendChild(heading); 
   results.forEach((verb) => {
-    
+
     const listItem = document.createElement("li");
     const link = document.createElement("a");
- 
+
     link.href = "#";
     link.textContent = `${verb.wordForm} (${verb.count})`;
 
@@ -286,20 +291,19 @@ function displayOccurrences(occurrences) {
   wordFormList.innerHTML = "";
 
   const firstVerb = occurrences[0]; ///grabs first gloss result
-  const glossHeading = document.createElement("h4"); 
-  glossHeading.textContent = `Gloss: ${firstVerb.gloss}`; 
+  const glossHeading = document.createElement("h4");
+  glossHeading.textContent = `Gloss: ${firstVerb.gloss}`;
   wordFormList.appendChild(glossHeading);
-  
+
   occurrences.forEach((verb) => {
     const listItem = document.createElement("li");
     listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
-    const etrans = document.createElement("h4"); 
-    etrans.textContent = `Translation: ${verb.trans}`; 
+    const etrans = document.createElement("h4");
+    etrans.textContent = `Translation: ${verb.trans}`;
     wordFormList.appendChild(listItem);
-    wordFormList.appendChild(etrans); 
+    wordFormList.appendChild(etrans);
 
   });
 }
-
 
 testXML();
