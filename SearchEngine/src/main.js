@@ -9,8 +9,8 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
   /////changes search input to lowercase so values arent filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+  const selectedAttribute = document.getElementById("attribute").value; 
 
-  const selectedAttribute = document.getElementById("attribute").value
   const selectedFilters = Array.from(
     document.querySelectorAll(".filter-scroll input:checked")
   ).map((checkbox) => checkbox.value);
@@ -126,6 +126,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         return verb.pv?.includes(pvv);
       });
 
+
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
@@ -184,6 +185,14 @@ async function testXML() {
     const time = verb.getAttribute("time");
     const trans = verb.getAttribute("trans");
     const pv = verb.getAttribute("pv");
+    const rgloss = verb.getAttribute("rgloss"); 
+    const neg = verb.getAttribute("neg"); 
+    const mod = verb.getAttribute("mod"); 
+    const rsltv = verb.getAttribute("rsltv"); 
+    const dub = verb.getAttribute("dub"); 
+    const altr = verb.getAttribute("altr"); 
+    
+  
 
 
     ///pushes it 
@@ -205,8 +214,13 @@ async function testXML() {
       tense: tense,
       time: time,
       trans: trans,
-      pv: pv ////preverb 
-
+      pv: pv, ////preverb
+      neg: neg,
+      mod : mod,
+      rsltv : rsltv, 
+      rgloss: rgloss, 
+      dub: dub, 
+      altr : altr
     });
   });
 
@@ -238,7 +252,11 @@ function displayResults(results, searchTerm, selectAttribute) { ///pushes select
 
   const heading = document.createElement("h4");
   heading.textContent = `Results for roots: ${searchTerm}`; //display search term 
-  wordFormList.appendChild(heading);
+
+
+  const countText = document.createElement("p"); 
+  countText.textContent = ` ${results.length} result(s) found`; 
+  wordFormList.appendChild(countText); 
 
   //// will return no matches if no mathces found 
   if (results.length === 0) {
@@ -250,11 +268,13 @@ function displayResults(results, searchTerm, selectAttribute) { ///pushes select
   // empty + filter -> results for selected filter. root-> result for root
   if (searchTerm === "") {
     heading.textContent = "Results for selected filters:";
+
   }else if(selectAttribute === "wordForm"){
     heading.textContent = `Results for word form: ${searchTerm}`;
   }else {
     heading.textContent = `Results for root: ${searchTerm}`;
   }
+
 
   wordFormList.appendChild(heading); 
   results.forEach((verb) => {
@@ -290,19 +310,40 @@ function displayOccurrences(occurrences) {
   const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
 
-  const firstVerb = occurrences[0]; ///grabs first gloss result
+  const firstVerb = occurrences[0];
+
   const glossHeading = document.createElement("h4");
   glossHeading.textContent = `Gloss: ${firstVerb.gloss}`;
   wordFormList.appendChild(glossHeading);
 
+  
+
   occurrences.forEach((verb) => {
     const listItem = document.createElement("li");
     listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
+
     const etrans = document.createElement("h4");
     etrans.textContent = `Translation: ${verb.trans}`;
+
+    const preverbInfo = document.createElement("p");
+
+    if (!verb.pv || verb.pv === "0") {
+      preverbInfo.textContent = "Preverb: none";
+    } else {
+      preverbInfo.textContent = `Root gloss: ${verb.rgloss}`;
+    }
+
+     if (verb.altr) {
+  const altTranslation = document.createElement("p");
+  altTranslation.textContent =
+    `Alternative translation: ${verb.altr}`;
+
+  wordFormList.appendChild(altTranslation);
+}
+
     wordFormList.appendChild(listItem);
     wordFormList.appendChild(etrans);
-
+    wordFormList.appendChild(preverbInfo);
   });
 }
 
