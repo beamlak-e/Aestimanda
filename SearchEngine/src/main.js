@@ -7,52 +7,44 @@ let verbData = [];
 document.getElementById('searchForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  /////changes search input to lowercase so values arent filtered out 
-  const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+   /////changes search input to lowercase so values aren't filtered out 
+  const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase(); 
   const selectedAttribute = document.getElementById("attribute").value; 
 
   const selectedFilters = Array.from(
     document.querySelectorAll(".filter-scroll input:checked")
   ).map((checkbox) => checkbox.value);
 
-  ///VOICE
   const selectedVoice = Array.from(
     document.querySelectorAll("input[name='voice[]']:checked"))
-    ////loops though checkbox grabs spefic data values like m and put them in a list 
+    ////loops though checkbox grabs specfic data values like m and put them in a list 
     ////puts them into variable const selectedvoices
     .map((checkbox => checkbox.value));
 
-  ///MOOD 
   const selectedMood = Array.from(
     document.querySelectorAll("input[name='mood[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  /////GENDER 
   const selectedGender = Array.from(
     document.querySelectorAll("input[name='gender[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  /// CASE 
   const selectedCasee = Array.from(
     document.querySelectorAll("input[name='casee[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  /// Number
   const selectedNumber = Array.from(
     document.querySelectorAll("input[name='number[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  ///person
   const selectedPerson = Array.from(
     document.querySelectorAll("input[name='person[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  ///tense
   const selectedTensev = Array.from(
     document.querySelectorAll("input[name='tensev[]']:checked"))
     .map((checkbox => checkbox.value));
 
-  ///time 
   const selectedUsage = Array.from(
     document.querySelectorAll("input[name='usage[]']:checked"))
     .map((checkbox => checkbox.value));
@@ -78,44 +70,40 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     const matchesVoice =
       ////selected voice= 0 checks if user selected nothing if so 0, shows no filters are chosen
       selectedVoice.length === 0 || selectedVoice.some((voice) => {
-        /////loos inside verb/// bamli ?. checks if a porperty exists without checking code 
+        /////checks if a property exists without checking code 
         return verb.parse?.includes(voice);
       });
 
     const matchesMood =
       selectedMood.length === 0 || selectedMood.some((mood) => {
-        /////loos inside verb/// bamli ?. checks if a porperty exists without checking code 
         return verb.parse?.includes(mood);
       });
 
-    // TT 
     const matchesCasee =
       selectedCasee.length === 0 || selectedCasee.some((casee) => {
         return verb.parse?.includes(casee);
       });
 
-    ///GENDER 
     const matchesGender =
       selectedGender.length === 0 || selectedGender.some((gender) => {
         return verb.parse?.includes(gender);
       });
 
-    ///NUMBER 
     const matchesNumber =
       selectedNumber.length === 0 || selectedNumber.some((number) => {
         return verb.parse?.includes(number);
       });
-    ///Person 
+
     const matchesPerson =
       selectedPerson.length === 0 || selectedPerson.some((person) => {
         return verb.parse?.includes(person);
       });
-    ///tense 
+
     const matchesTensev =
       selectedTensev.length === 0 || selectedTensev.some((tensev) => {
         return verb.tense?.includes(tensev);
       });
-    //usage
+
     const matchesUsage =
       selectedUsage.length === 0 || selectedUsage.some((usage) => {
         return verb.time?.includes(usage);
@@ -126,14 +114,12 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         return verb.pv?.includes(pvv);
       });
 
-
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
     console.log(verb.trans);
     console.log(verb.pvv);
 
-   ///matches search is the nww one -> replaced matchesRoot since we now have two types of searches 
     return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch;
   });
 
@@ -146,7 +132,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 });
 
 
-// Load and process XML file ///Test cases 
+// Load and process XML file 
 async function testXML() {
   const response = await fetch("/RV2.xml"); ////fetches rv2 file 
   const xmlText = await response.text();
@@ -178,7 +164,7 @@ async function testXML() {
     const ipfv = verb.getAttribute("ipfv");
     const aug = verb.getAttribute("aug");
     const pada = verb.parentElement;
-    const padaId = pada.getAttribute("id");  //gets pada id (the numbers line refrence)
+    const padaId = pada.getAttribute("id");  
     const padaText = pada.textContent.trim();
     const parse = verb.getAttribute("parse");
     const tense = verb.getAttribute("tense");
@@ -192,9 +178,6 @@ async function testXML() {
     const dub = verb.getAttribute("dub"); 
     const altr = verb.getAttribute("altr"); 
     
-  
-
-
     ///pushes it 
     verbData.push({
       wordForm: wordForm,
@@ -214,7 +197,7 @@ async function testXML() {
       tense: tense,
       time: time,
       trans: trans,
-      pv: pv, ////preverb
+      pv: pv, 
       neg: neg,
       mod : mod,
       rsltv : rsltv, 
@@ -227,7 +210,7 @@ async function testXML() {
   console.log("Verb data loaded:", verbData);
 }
 
-// Group duplicate word forms and count them 
+// function for grouping duplicate word forms and count them 
 function groupWordForms(matches) {
   const grouped = {};
 
@@ -245,8 +228,8 @@ function groupWordForms(matches) {
   return Object.values(grouped);
 }
 
-// Display results on page 
-function displayResults(results, searchTerm, selectAttribute) { ///pushes selectAttribute now (wordForm, root)
+// Displaying results on page 
+function displayResults(results, searchTerm, selectAttribute) {  ///pushes selectAttribute now (wordForm, root)
   const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
 
@@ -258,7 +241,7 @@ function displayResults(results, searchTerm, selectAttribute) { ///pushes select
   countText.textContent = ` ${results.length} result(s) found`; 
   wordFormList.appendChild(countText); 
 
-  //// will return no matches if no mathces found 
+  //// will return no matches if no matches found 
   if (results.length === 0) {
     const listItem = document.createElement("li");
     listItem.textContent = "No results found.";
@@ -268,7 +251,6 @@ function displayResults(results, searchTerm, selectAttribute) { ///pushes select
   // empty + filter -> results for selected filter. root-> result for root
   if (searchTerm === "") {
     heading.textContent = "Results for selected filters:";
-
   }else if(selectAttribute === "wordForm"){
     heading.textContent = `Results for word form: ${searchTerm}`;
   }else {
