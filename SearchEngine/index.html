@@ -42,6 +42,8 @@
   <h4> Search verb forms and explore context from Ancient Greek and Sanskrit literature </h4>
 </div>
 
+
+
   <main class="SearchEngine">
     <div id="Search">
       <h3> Search Engine </h3>
@@ -323,14 +325,34 @@
         <p>View occurrences in context alongside translation glosses and grammatical info</p>
       </div>
     </div>
+    </div>
 
+  <div id="Textandcount">
+    <p id="resultCount"></p>
+     <p id="numberCount"></p>
   </div>
-
-  <div id="Results">
-    <h2> Results:</h2>
-    <ul id="wordFormList">
+  <div id="ResultsandMiniresults">
+    <div id="Results">
+      <p id="word">Result</p>
+      <p id="thinnerword">wordform</p>
+      <p id="glosshere"></p>
+      <div class="line"></div>
+    <ul id="wordFormList">No searches yet
     </ul>
   </div>
+  <div id="Miniresults">
+    <p id="textincontext"> Text in Context</p>
+    <div id="preverbrow">
+      <h6> Preverb:</h6>
+      <p id="preverbdisplay"></p>
+    </div>
+    <div id="translationrow">
+      <h6> Translation:</h6>
+      <p id="translation"></p>
+    </div>
+  </div>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 
