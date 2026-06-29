@@ -13,7 +13,10 @@
     href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <!-- correct file -->
 <!-- hey file -->
@@ -33,271 +36,198 @@
       </div>
     </div>
   </header>
-   <!-- realistically i should create a big div..... but i dont want too so no  -->
   <div id="title-row">
-  <img src="./src/assets/img/language.svg" alt="Language icon" class="language-img">
-  <h1> Classical Language Corpus </h1> <!-- adjust the gap between the letter spacing -->
-  </div>
+    <img src="./src/assets/img/language.svg" alt="Language icon" class="language-img">
+    <h1> Classical Language Corpus </h1>
+    </div>
   <div id="title-row-underneathtext">
-  <h4> Search verb forms and explore context from Ancient Greek and Sanskrit literature </h4>
-</div>
+    <h4> Search verb forms and explore context from Ancient Greek and Sanskrit literature </h4>
 
-
-
-  <main class="SearchEngine">
-    <div id="Search">
-      <h3> Search Engine </h3>
-
+  </div>
+  <main>
+  <div id="Search">
+    <div id="SearchRow">
+      <div class="biconicon">
+        <i class="bi bi-search"></i>
+      </div>
+      <h6> Search the Corpus</h6>
+      <!-- <span class="hidden lg:inline-flex">Search docs...</span> -->
     </div>
 
+    <p>Enter a verb or wordform in Greek or Sanskrit and optionally filter by morphological attributes </p>
     <div id="dropdown-container">
+
       <form id="searchForm">
-        <input type="text" id="searchInput"><select id="attribute">
-          <option value="root">Root</option>
-          <option value="wordForm"> Wordform</option>
-        </select>
+        <div class="search-top-row">
 
-        <div class="p-box">
-          <p>Preverb</p>
-          <div class="p-scroll">
-            <label> <input type="checkbox" name="pvv[]" value="abhí"> abhí </label>
-            <label> <input type="checkbox" name="pvv[]" value="abhí prá"> abhí prá </label>
-            <label> <input type="checkbox" name="pvv[]" value="anu"> anu </label>
-            <label> <input type="checkbox" name="pvv[]" value="ní"> ní </label>
-            <label> <input type="checkbox" name="pvv[]" value="ní ā́"> ní ā́ </label>
-            <label> <input type="checkbox" name="pvv[]" value="nís">nís </label>
-            <label> <input type="checkbox" name="pvv[]" value="prá"> prá </label>
-            <label> <input type="checkbox" name="pvv[]" value="práti"> práti </label>
-            <label> <input type="checkbox" name="pvv[]" value="puráḥ"> puráḥ </label>
-            <label> <input type="checkbox" name="pvv[]" value="pári"> pári </label>
-            <label> <input type="checkbox" name="pvv[]" value="pári ā́"> pári ā́ </label>
-            <label> <input type="checkbox" name="pvv[]" value="párā"> párā </label>
-            <label> <input type="checkbox" name="pvv[]" value="sam"> sam </label>
-            <label> <input type="checkbox" name="pvv[]" value="su"> su </label>
-            <label> <input type="checkbox" name="pvv[]" value="sám"> sám </label>
-            <label> <input type="checkbox" name="pvv[]" value="sám ádhi"> sám ádhi </label>
-            <label> <input type="checkbox" name="pvv[]" value="sám ā́"> sám ā́ </label>
-            <label> <input type="checkbox" name="pvv[]" value="ud"> ud </label>
-            <label> <input type="checkbox" name="pvv[]" value="ví"> ví </label>
-            <label> <input type="checkbox" name="pvv[]" value="ví ánu"> ví ánu </label>
-            <label> <input type="checkbox" name="pvv[]" value="ví ā́"> ví ā́ </label>
-            <label> <input type="checkbox" name="pvv[]" value="ánu"> ánu </label>
-            <label> <input type="checkbox" name="pvv[]" value="ápa"> ápa </label>
-            <label> <input type="checkbox" name="pvv[]" value="ápi"> ápi </label>
-            <label> <input type="checkbox" name="pvv[]" value="áti"> áti </label>
-            <label><input type="checkbox" name="pvv[]" value="áva"> áva </label>
-            <label> <input type="checkbox" name="pvv[]" value="úd"> úd </label>
-            <label> <input type="checkbox" name="pvv[]" value="úpa"> úpa </label>
-            <label><input type="checkbox" name="pvv[]" value="ā́"> ā́</label>
-            <label> <input type="checkbox" name="pvv[]" value="ā́ pári"> ā́ pári </label>
-            <label> <input type="checkbox" name="pvv[]" value="ā́ ví"> ā́ ví </label>
-          </div>
-        </div>
-
-        <!-- creating a bdy group to try to get it all in a flex row -->
-        <div class="form-box">
-          <div class="form-filter-panel">
-            <!-- TENSE  -->
-            <div class="form-filter-group">
-              <h4>Tense</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="tensev[]" value="Aor">
-                  aor
-                </label>
-                <label>
-                  <input type="checkbox" name="tensev[]" value="Pres">
-                  present
-                </label>
-                <label>
-                  <input type="checkbox" name="tensev[]" value="Ipf">
-                  imperfect
-                </label>
-                <label>
-                  <input type="checkbox" name="tensev[]" value="Plpf">
-                  pluperfect
-                </label>
-                <label>
-                  <input type="checkbox" name="tensev[]" value="Pf">
-                  perfect
-                </label>
-                <label>
-                  <input type="checkbox" name="tensev[]" value="Cond">
-                  Conditional
-                </label>
-              </div>
-            </div>
-            <!-- Usage  -->
-            <div class="form-filter-group">
-              <h4>Time</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="usage[]" value="past">
-                  Past
-                </label>
-                <label>
-                  <input type="checkbox" name="usage[]" value="present">
-                  Present
-                </label>
-                <label>
-                  <input type="checkbox" name="usage[]" value="future">
-                  Future
-                </label>
-              </div>
-            </div>
-            <!-- Mood  -->
-            <div class="form-filter-group">
-              <h4>Mood</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="mood[]" value="ind">
-                  ind
-                </label>
-                <label>
-                  <input type="checkbox" name="mood[]" value="sjv">
-                  sjv
-                </label>
-                <label>
-                  <input type="checkbox" name="mood[]" value="opt">
-                  opt
-                </label>
-                <label>
-                  <input type="checkbox" name="mood[]" value="ipv">
-                  ipv
-                </label>
-              </div>
-            </div>
-            <!-- Voice  -->
-            <div class="form-filter-group">
-              <h4>Voice</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="voice[]" value="act">
-                  act
-                </label>
-                <label>
-                  <input type="checkbox" name="voice[]" value="mid">
-                  mid
-                </label>
-                <label>
-                  <input type="checkbox" name="voice[]" value="psv">
-                  pass
-                </label>
-              </div>
-            </div>
-            <!-- Case  -->
-            <div class="form-filter-group">
-              <h4>Case</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="casee[]" value="nom">
-                  nom
-                </label>
-                <label>
-                  <input type="checkbox" name="casee[]" value="gen">
-                  gen
-                </label>
-                <label>
-                  <input type="checkbox" name="casee[]" value="dat">
-                  dat
-                </label>
-                <label>
-                  <input type="checkbox" name="casee[]" value="acc">
-                  acc
-                </label>
-              </div>
-            </div>
-            <!-- Gender  -->
-            <div class="form-filter-group">
-              <h4>Gender</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="gender[]" value="m">
-                  Masculine
-                </label>
-                <label>
-                  <input type="checkbox" name="gender[]" value="f">
-                  Feminine
-                </label>
-                <label>
-                  <input type="checkbox" name="gender[]" value="n">
-                  Neutral
-                </label>
-              </div>
-            </div>
-            <!-- Person  -->
-            <div class="form-filter-group">
-              <h4>Person</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="person[]" value="1">
-                  1st
-                </label>
-                <label>
-                  <input type="checkbox" name="person[]" value="2">
-                  2nd
-                </label>
-                <label>
-                  <input type="checkbox" name="person[]" value="3">
-                  3rd
-                </label>
-              </div>
-            </div>
-            <!-- Number  -->
-            <div class="form-filter-group">
-              <h4>Number</h4>
-              <div class="option-box">
-                <label>
-                  <input type="checkbox" name="number[]" value="sg">
-                  Singular
-                </label>
-                <label>
-                  <input type="checkbox" name="number[]" value="pl">
-                  Plural
-                </label>
-                <label>
-                  <input type="checkbox" name="number[]" value="du">
-                  Dual
-                </label>
-              </div>
-            </div>
+          <div class="search-input-group">
+            <h6>Search</h6>
+            <input type="text" id="searchInput" placeholder="e.g. jan, bhū, ájani...">
           </div>
 
-        </div>
-
-
-        <div class="filter-box">
-          <p> Formal Filters</p>
-          <div class="filter-scroll">
-            <label><input type="checkbox" value="neg"> Negated</label>
-            <label><input type="checkbox" value="aug"> Augmented</label>
+          <div class="type-input-group">
+            <h6>Type</h6>
+            <select id="attribute">
+              <option value="root">Root</option>
+              <option value="wordForm">Wordform</option>
+            </select>
           </div>
         </div>
-        <div class="filter-box">
-          <p>Filters</p>
-          <div class="filter-scroll">
-            <label><input type="checkbox" value="mod"> Modal</label>
-            <label><input type="checkbox" value="hab"> Habitual</label>
-            <label><input type="checkbox" value="exp"> Experiential</label>
-            <label><input type="checkbox" value="rptv"> Reportive</label>
-            <label><input type="checkbox" value="term"> Terminative</label>
-            <label><input type="checkbox" value="gnom"> Gnomic</label>
-            <label><input type="checkbox" value="univ"> Universal</label>
-            <label><input type="checkbox" value="ipfv"> Imperfective</label>
-            <label><input type="checkbox" value="rsltv">Resulative</label>
-            <label><input type="checkbox" value="dub"> Secure Search</label>
-            <label><input type="checkbox" value="altr"> No Alternative Readings</label>
+        <div class="filter-area">
+        <div class="row1">
+          <div class="preverb-group">
+            <label for="preverbSelect">Preverb</label>
+            <select id="preverbSelect" multiple>
+              <option value="abhí">abhí</option>
+              <option value="abhí prá">abhí prá</option>
+              <option value="anu">anu</option>
+              <option value="ní">ní</option>
+              <option value="ní ā́">ní ā́</option>
+              <option value="nís">nís</option>
+              <option value="prá">prá</option>
+              <option value="práti">práti</option>
+              <option value="puráḥ">puráḥ</option>
+              <option value="pári">pári</option>
+              <option value="pári ā́">pári ā́</option>
+              <option value="párā">párā</option>
+              <option value="sam">sam</option>
+              <option value="su">su</option>
+              <option value="sám">sám</option>
+              <option value="sám ádhi">sám ádhi</option>
+              <option value="sám ā́">sám ā́</option>
+              <option value="ud">ud</option>
+              <option value="ví">ví</option>
+              <option value="ví ánu">ví ánu</option>
+              <option value="ví ā́">ví ā́</option>
+              <option value="ánu">ánu</option>
+              <option value="ápa">ápa</option>
+              <option value="ápi">ápi</option>
+              <option value="áti">áti</option>
+              <option value="áva">áva</option>
+              <option value="úd">úd</option>
+              <option value="úpa">úpa</option>
+              <option value="ā́">ā́</option>
+              <option value="ā́ pári">ā́ pári</option>
+              <option value="ā́ ví">ā́ ví</option>
+            </select>
+          </div>
+          <div class="tense-group">
+            <label for="tenseSelect">Tense</label>
+            <select id="tenseSelect" multiple>
+              <option value="Aor">Aor</option>
+              <option value="Pres">Present</option>
+              <option value="Ipf">Imperfective</option>
+              <option value="Plpf">Pluperfect</option>
+              <option value="Pf">Perfect</option>
+              <option value="Cond">Conditional</option>
+            </select>
           </div>
         </div>
-        <button type="submit">Search</button>
-      </form>
+        <div class="row1">
+          <div class="time-group">
+            <label for="timeSelect">Time</label>
+            <select id="timeSelect" multiple>
+              <option value="past">Past</option>
+              <option value="present">Present</option>
+              <option value="future">Future</option>
+            </select>
+          </div>
+          <div class="mood-group">
+            <label for="moodSelect">Mood</label>
+            <select id="moodSelect" multiple>
+              <option value="ind">Ind</option>
+              <option value="sjv">sjv</option>
+              <option value="opt">opt</option>
+              <option value="ipv">ipv</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="voice-group">
+            <label for="voiceSelect">Voice</label>
+            <select id="voiceSelect" multiple>
+              <option value="act">act</option>
+              <option value="mid">mid</option>
+              <option value="psv">psv</option>
+            </select>
+          </div>
+          <div class="case-group">
+            <label for="caseSelect">Case</label>
+            <select id="caseSelect" multiple>
+              <option value="nom">nom</option>
+              <option value="gen">gen</option>
+              <option value="dat">dat</option>
+              <option value="acc">acc</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="gender-group">
+            <label for="genderSelect">Gender</label>
+            <select id="genderSelect" multiple>
+              <option value="m">Masculine</option>
+              <option value="f">Feminine</option>
+              <option value="n">Neutral</option>
+            </select>
+          </div>
+          <div class="person-group">
+            <label for="personSelect">Person</label>
+            <select id="personSelect" multiple>
+              <option value="1">1st</option>
+              <option value="2">2nd</option>
+              <option value="3">3rd</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="number-group">
+            <label for="numberSelect">Number</label>
+            <select id="numberSelect" multiple>
+              <option value="sg">Singular</option>
+              <option value="pl">Plural</option>
+              <option value="du">Dual</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterSelect">Filter</label>
+            <select id="filterSelect" multiple>
+              <option value="mod">Modal</option>
+              <option value="hab">Habitual</option>
+              <option value="exp">Experiential</option>
+              <option value="rptv">Reportative</option>
+              <option value="term">Terminative</option>
+              <option value="gnom">Gnomic</option>
+              <option value="univ">Universal</option>
+              <option value="ipfv">Imperfective</option>
+              <option value="rsltv">Resulative</option>
+              <option value="dub">Secure Search</option>
+              <option value="altr">No Alternative Readings</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="formal-group">
+            <label for="formalSelect">Formal Filters</label>
+            <select id="formalSelect">
+              <option value="">All Filters</option>
+              <option value="neg">Negated</option>
+              <option value="aug">Augmented</option>
+            </select>
+          </div>
+        </div>
+        <div id="bttnrow">
+          <button type="submit">Search</button>
+        </div>
+        </div>
+         </form>
     </div>
+  </div>
   </main>
-  <!-- Three info boxes aka thing(i will change that later)  -->
+  <!-- Three info cards   -->
   <div id="thingc">
 
     <div id="thing1">
-      <div class="bicon">
+      <div class="bicon 2">
         <i class="bi bi-search"></i>
       </div>
       <h4> Search</h4>
@@ -307,7 +237,7 @@
     </div>
 
     <div id="thing2">
-      <div class="bicon2">
+      <div class="bicon">
         <i class="bi bi-filter"></i>
       </div>
       <h4> Grammatical Filters</h4>
@@ -325,11 +255,11 @@
         <p>View occurrences in context alongside translation glosses and grammatical info</p>
       </div>
     </div>
-    </div>
+  </div>
 
   <div id="Textandcount">
     <p id="resultCount"></p>
-     <p id="numberCount"></p>
+    <p id="numberCount"></p>
   </div>
   <div id="ResultsandMiniresults">
     <div id="Results">
@@ -337,22 +267,21 @@
       <p id="thinnerword">wordform</p>
       <p id="glosshere"></p>
       <div class="line"></div>
-    <ul id="wordFormList">No searches yet
-    </ul>
-  </div>
-  <div id="Miniresults">
-    <p id="textincontext"> Text in Context</p>
-    <div id="preverbrow">
-      <h6> Preverb:</h6>
-      <p id="preverbdisplay"></p>
+      <ul id="wordFormList">No searches yet
+      </ul>
     </div>
-    <div id="translationrow">
-      <h6> Translation:</h6>
-      <p id="translation"></p>
-    </div>
+    <div id="Miniresults">
+      <p id="textincontext"> Text in Context</p>
+      <div id="preverbrow">
+        <h6> Preverb:</h6>
+        <p id="preverbdisplay"></p>
+      </div>
+      <div id="translationrow">
+        <h6> Translation:</h6>
+        <p id="translation"></p>
+      </div>
   </div>
-  </div>
-
+</div>
   <script type="module" src="/src/main.js"></script>
 </body>
 

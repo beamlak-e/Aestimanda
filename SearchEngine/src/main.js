@@ -1,57 +1,125 @@
 import './style.css';
 
-///creates empty array that we later store string from 
+//creates empty array that we later store string from 
 let verbData = [];
+
+// CHOICE JS --- Preverb
+document.addEventListener("DOMContentLoaded", () => {
+  new Choices("#preverbSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select preverb(s)"
+  });
+
+  new Choices("#tenseSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select tense(s)"
+  });
+
+  new Choices("#timeSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select times(s)"
+  });
+
+  new Choices("#moodSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select mood(s)"
+  });
+
+  new Choices("#caseSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select case(s)"
+  });
+
+  new Choices("#voiceSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select voice(s)"
+  });
+
+  new Choices("#genderSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select voice(s)"
+  });
+
+  new Choices("#personSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select person(s)"
+  });
+
+  new Choices("#numberSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select number(s)"
+  });
+
+  new Choices("#formalSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select formal filter"
+  });
+
+  new Choices("#filterSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select filter"
+  });
+
+
+});
 
 /// when we press submit 
 document.getElementById('searchForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
+  /////who nows 
+  function getSelectedValues(id) {
+    return Array.from(document.getElementById(id).selectedOptions)
+      .map(option => option.value);
+  }
+
   /////changes search input to lowercase so values aren't filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
   const selectedAttribute = document.getElementById("attribute").value;
 
-  const selectedFilters = Array.from(
-    document.querySelectorAll(".filter-scroll input:checked")
-  ).map((checkbox) => checkbox.value);
-
-  const selectedVoice = Array.from(
-    document.querySelectorAll("input[name='voice[]']:checked"))
-    ////loops though checkbox grabs specfic data values like m and put them in a list 
-    ////puts them into variable const selectedvoices
-    .map((checkbox => checkbox.value));
-
-  const selectedMood = Array.from(
-    document.querySelectorAll("input[name='mood[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedGender = Array.from(
-    document.querySelectorAll("input[name='gender[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedCasee = Array.from(
-    document.querySelectorAll("input[name='casee[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedNumber = Array.from(
-    document.querySelectorAll("input[name='number[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedPerson = Array.from(
-    document.querySelectorAll("input[name='person[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedTensev = Array.from(
-    document.querySelectorAll("input[name='tensev[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedUsage = Array.from(
-    document.querySelectorAll("input[name='usage[]']:checked"))
-    .map((checkbox => checkbox.value));
-
-  const selectedPvv = Array.from(
-    document.querySelectorAll("input[name='pvv[]']:checked"))
-    .map((checkbox => checkbox.value));
+  const selectedPvv = getSelectedValues("preverbSelect");
+  const selectedTensev = getSelectedValues("tenseSelect");
+  const selectedUsage = getSelectedValues("timeSelect");
+  const selectedMood = getSelectedValues("moodSelect");
+  const selectedVoice = getSelectedValues("voiceSelect");
+  const selectedCasee = getSelectedValues("caseSelect");
+  const selectedGender = getSelectedValues("genderSelect");
+  const selectedPerson = getSelectedValues("personSelect");
+  const selectedNumber = getSelectedValues("numberSelect");
+  const selectedFilters = getSelectedValues("filterSelect");
 
 
   //// changes output to lowercase so values aren't filtered out 
@@ -230,41 +298,41 @@ function groupWordForms(matches) {
 
 // Displaying results on page 
 function displayResults(results, searchTerm, selectAttribute) {  ///pushes selectAttribute now (wordForm, root)
-const wordFormList = document.getElementById("wordFormList");
+  const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
 
   const heading = document.createElement("h4");
   heading.textContent = `Results for roots: ${searchTerm}`; //display search term 
 
- ///so it clears 
- const glosshere = document.getElementById("glosshere");
-if (glosshere) {
-  glosshere.textContent = "";
-}
- 
-
-  const word = document.getElementById("word"); 
- if (word) {
-  if (searchTerm === "") {
-    word.textContent = "Results for selected filters:";
-
-  } else if (selectAttribute === "wordForm") {
-    word.textContent = `${searchTerm}`;
-  } else {
-    word.textContent = `${searchTerm}`;
-
+  ///so it clears 
+  const glosshere = document.getElementById("glosshere");
+  if (glosshere) {
+    glosshere.textContent = "";
   }
- }
 
-  const thinnerword = document.getElementById("thinnerword"); 
- if (thinnerword) {
- if (selectAttribute === "wordForm") {
-    thinnerword.textContent = `${searchTerm}`;
-  } else {
-    thinnerword.textContent = `${searchTerm}`;
 
+  const word = document.getElementById("word");
+  if (word) {
+    if (searchTerm === "") {
+      word.textContent = "Results for selected filters:";
+
+    } else if (selectAttribute === "wordForm") {
+      word.textContent = `${searchTerm}`;
+    } else {
+      word.textContent = `${searchTerm}`;
+
+    }
   }
- }
+
+  const thinnerword = document.getElementById("thinnerword");
+  if (thinnerword) {
+    if (selectAttribute === "wordForm") {
+      thinnerword.textContent = `${searchTerm}`;
+    } else {
+      thinnerword.textContent = `${searchTerm}`;
+
+    }
+  }
 
 
   const resultCount = document.getElementById("resultCount");
@@ -276,7 +344,7 @@ if (glosshere) {
     }
   }
 
-  
+
   const numberCount = document.getElementById("numberCount");
   if (numberCount) {
     if (selectAttribute === "wordForm") {
@@ -295,7 +363,7 @@ if (glosshere) {
   }
 
 
- 
+
   ///for each verb when you click on it 
   results.forEach((verb) => {
 
@@ -331,10 +399,10 @@ function displayOccurrences(occurrences) {
 
   const firstVerb = occurrences[0];
 
-const glosshere = document.getElementById("glosshere");
-if (glosshere) {
-  glosshere.textContent = `"${firstVerb.gloss}"`;
-}
+  const glosshere = document.getElementById("glosshere");
+  if (glosshere) {
+    glosshere.textContent = `"${firstVerb.gloss}"`;
+  }
 
 
   occurrences.forEach((verb) => {
