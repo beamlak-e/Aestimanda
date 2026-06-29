@@ -96,6 +96,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+document.getElementById('searchForm').addEventListener('reset', function (event) {
+  document.getElementById("textincontext").textContent = "Text in Context";
+  document.getElementById("preverbdisplay").textContent = "";
+  document.getElementById("translation").textContent = "";
+  document.getElementById("tense").textContent = "";
+  document.getElementById("mood").textContent = "";
+  document.getElementById("case").textContent = "";
+  document.getElementById("gender").textContent = "";
+  document.getElementById("number").textContent = "";
+  document.getElementById("person").textContent = "";
+  document.getElementById("usage").textContent = "";
+  document.getElementById("word").textContent = "Result";
+  document.getElementById("gloss").textContent = "";
+  document.getElementById("thinnerword").textContent = "";
+  document.getElementById("wordFormList").innerHTML =
+    "<li>No searches yet</li>";
+  document.getElementById("glosshere").textContent = "";
+
+
+});
+
+
 /// when we press submit 
 document.getElementById('searchForm').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -105,8 +127,6 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     return Array.from(document.getElementById(id).selectedOptions)
       .map(option => option.value);
   }
-
-  /////changes search input to lowercase so values aren't filtered out 
   const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
   const selectedAttribute = document.getElementById("attribute").value;
 
@@ -245,6 +265,12 @@ async function testXML() {
     const rsltv = verb.getAttribute("rsltv");
     const dub = verb.getAttribute("dub");
     const altr = verb.getAttribute("altr");
+    const mood = verb.getAttribute("mood");
+    const voice = verb.getAttribute("voice");
+    const casee = verb.getAttribute("case");
+    const gender = verb.getAttribute("gender");
+    const number = verb.getAttribute("number");
+    const person = verb.getAttribute("person");
 
     ///pushes it 
     verbData.push({
@@ -271,7 +297,14 @@ async function testXML() {
       rsltv: rsltv,
       rgloss: rgloss,
       dub: dub,
-      altr: altr
+      altr: altr,
+      mood,
+      voice,
+      casee,
+      gender,
+      number,
+      person,
+
     });
   });
 
@@ -296,11 +329,24 @@ function groupWordForms(matches) {
   return Object.values(grouped);
 }
 
+function clearMiniResults() {
+  document.getElementById("textincontext").textContent = "Text in Context";
+  document.getElementById("preverbdisplay").textContent = "";
+  document.getElementById("translation").textContent = "";
+  document.getElementById("tense").textContent = "";
+  document.getElementById("mood").textContent = "";
+  document.getElementById("case").textContent = "";
+  document.getElementById("gender").textContent = "";
+  document.getElementById("number").textContent = "";
+  document.getElementById("person").textContent = "";
+  document.getElementById("usage").textContent = "";
+}
+
 // Displaying results on page 
 function displayResults(results, searchTerm, selectAttribute) {  ///pushes selectAttribute now (wordForm, root)
   const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
-
+  clearMiniResults();
   const heading = document.createElement("h4");
   heading.textContent = `Results for roots: ${searchTerm}`; //display search term 
 
@@ -393,6 +439,53 @@ function showOccurrencesForWordForm(wordForm) {
   displayOccurrences(occurrences);
 }
 
+function displayDetails(verb) {
+
+  document.getElementById("textincontext").textContent =
+    `${verb.padaId}: ${verb.padaText}`;
+
+  document.getElementById("preverbdisplay").textContent =
+    (!verb.pv || verb.pv === "0") ? "none" : verb.pv;
+
+  document.getElementById("translation").textContent =
+    verb.trans || "";
+
+  document.getElementById("tense").textContent =
+    verb.tense || "";
+
+  document.getElementById("mood").textContent =
+    verb.mood || "";
+
+  const parse = verb.parse || "";
+
+  document.getElementById("case").textContent =
+    parse.includes("nom") ? "Nominative" :
+      parse.includes("gen") ? "Genitive" :
+        parse.includes("dat") ? "Dative" :
+          parse.includes("acc") ? "Accusative" :
+            "";
+
+  document.getElementById("gender").textContent =
+    parse.includes(".m.") ? "Masculine" :
+      parse.includes(".f.") ? "Feminine" :
+        parse.includes(".n.") ? "Neuter" :
+          "";
+
+  document.getElementById("number").textContent =
+    parse.includes("sg") ? "Singular" :
+      parse.includes("pl") ? "Plural" :
+        parse.includes("du") ? "Dual" :
+          "";
+
+  document.getElementById("person").textContent =
+    parse.includes("1st") ? "1st Person" :
+      parse.includes("2nd") ? "2nd Person" :
+        parse.includes("3rd") ? "3rd Person" :
+          "";
+
+
+}
+
 function displayOccurrences(occurrences) {
   const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
@@ -407,29 +500,15 @@ function displayOccurrences(occurrences) {
 
   occurrences.forEach((verb) => {
     const listItem = document.createElement("li");
+
     listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
+    listItem.classList.add("context-line");
 
-    const etrans = document.createElement("h4");
-    etrans.textContent = `Translation: ${verb.trans}`;
+    listItem.addEventListener("click", () => {
+      displayDetails(verb);
+    });
 
-    const preverbInfo = document.createElement("p");
-    if (!verb.pv || verb.pv === "0") {
-      preverbInfo.textContent = "Preverb: none";
-    } else {
-      preverbInfo.textContent = `Root gloss: ${verb.rgloss}`;
-    }
-
-    ///altr = alternative text
-    if (verb.altr) {
-      const altTranslation = document.createElement("p");
-      altTranslation.textContent =
-        `Alternative translation: ${verb.altr}`;
-
-      wordFormList.appendChild(altTranslation);
-    }
     wordFormList.appendChild(listItem);
-    wordFormList.appendChild(etrans);
-    wordFormList.appendChild(preverbInfo);
   });
 }
 
