@@ -108,13 +108,17 @@ document.getElementById('searchForm').addEventListener('reset', function (event)
   document.getElementById("person").textContent = "";
   document.getElementById("usage").textContent = "";
   document.getElementById("word").textContent = "Result";
-  document.getElementById("gloss").textContent = "";
-  document.getElementById("thinnerword").textContent = "";
+  document.getElementById("thinnerword").textContent =   "wordform";
   document.getElementById("wordFormList").innerHTML =
     "<li>No searches yet</li>";
   document.getElementById("glosshere").textContent = "";
+  document.getElementById("resultCount").textContent = "";
+ document.getElementById("numberCount").textContent = "";
 
 
+});
+document.getElementById("searchForm").addEventListener("reset", function () {
+  console.log("RESET FIRED");
 });
 
 
@@ -340,6 +344,7 @@ function clearMiniResults() {
   document.getElementById("number").textContent = "";
   document.getElementById("person").textContent = "";
   document.getElementById("usage").textContent = "";
+
 }
 
 // Displaying results on page 
@@ -361,7 +366,6 @@ function displayResults(results, searchTerm, selectAttribute) {  ///pushes selec
   if (word) {
     if (searchTerm === "") {
       word.textContent = "Results for selected filters:";
-
     } else if (selectAttribute === "wordForm") {
       word.textContent = `${searchTerm}`;
     } else {
@@ -410,7 +414,7 @@ function displayResults(results, searchTerm, selectAttribute) {  ///pushes selec
 
 
 
-  ///for each verb when you click on it 
+  ///clearing the attribute card
   results.forEach((verb) => {
 
     const listItem = document.createElement("li");
@@ -443,6 +447,7 @@ function displayDetails(verb) {
 
   document.getElementById("textincontext").textContent =
     `${verb.padaId}: ${verb.padaText}`;
+
 
   document.getElementById("preverbdisplay").textContent =
     (!verb.pv || verb.pv === "0") ? "none" : verb.pv;
@@ -482,6 +487,12 @@ function displayDetails(verb) {
       parse.includes("2nd") ? "2nd Person" :
         parse.includes("3rd") ? "3rd Person" :
           "";
+
+ console.log(verb.trans);
+ console.log(number); 
+ console.log(verb.case);
+ console.log(gender); 
+ 
 
 
 }

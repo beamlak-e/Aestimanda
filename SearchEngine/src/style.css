@@ -95,8 +95,66 @@ body {
 #SearchB:hover {
 
   background-color: rgba(217, 217, 217, 0.088);
+}
 
 
+#bttnrow{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top:25px;
+    padding-left: 550px;
+    gap: 13px;
+  
+}
+
+#bttncontainer{
+ border-radius: 11px;
+  border: 1px solid rgba(192, 194, 194, 0.20); 
+  flex-direction: row;
+  display: flex;
+  padding: 5px;
+  gap: 13px;
+}
+
+#submit {
+  background-color: rgba(192, 194, 194, 0.30);
+  border-radius: 8px;
+  padding: 10px 40px;
+  display: flex;
+  border: #000000;
+   color:rgba(0, 0, 0, 0.80);
+   font-weight: 600;
+}
+
+#submit a {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  display: flex;
+  flex-direction: none;
+   text-decoration: none;
+  opacity: 0.85;
+}
+
+#reset {
+  background-color: rgba(192, 194, 194, 0.30);
+  border-radius: 8px;
+  padding: 10px 40px;
+  display: flex;
+  border: #000000;
+   color:rgba(0, 0, 0, 0.80);
+   font-weight: 600;
+}
+
+#reset a {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  display: flex;
+  flex-direction: none;
+   text-decoration: none;
+  opacity: 0.85;
 }
 
 
@@ -372,11 +430,6 @@ input::placeholder{
       width:330px;
 }
 
-#bttnrow{
-    display:flex;
-    justify-content:flex-end;
-    margin-top:25px;
-}
 
 .filter-area{
    flex:1;
@@ -617,6 +670,8 @@ input::placeholder{
    padding-left: 20px;
    color: #403f3fe0;
    padding-top: 20px; 
+   padding-bottom: 8px;
+   width: 250px;
 
 }
 
@@ -625,18 +680,75 @@ input::placeholder{
  padding-left: 20px;
  font-weight: 600;
  color: #161616c9;
+  padding-bottom: 8px;
 }
 
-
+#preverbdisplay{
+padding-left: 20px;
+   color: #403f3fe0;
+     padding-bottom: 8px;
+}
 
 #translationrow h6{
  font-size: 16px;
   padding-left: 20px;
   font-weight: 600;
   color: #161616c9;
+   padding-bottom: 8px;
+}
+
+#translation{
+  padding-left: 20px;
+   color: #403f3fe0;
+     padding-bottom: 8px;
+}
+
+#tense{
+   padding-left: 20px;
+   padding-bottom: 2px;
 }
 
 
+#mood{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#case{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#gender{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#tense{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#mood{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#case{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#gender{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#number{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
+#person{
+   padding-left: 20px;
+  padding-bottom: 2px;
+}
+#usage{
+   padding-left: 20px;
+   padding-bottom: 2px;
+}
  /* Search Engine css starts here */
 .filter.box {
   width: 250px;
