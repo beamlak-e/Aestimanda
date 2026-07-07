@@ -93,6 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
     placeholderValue: "Select filter"
   });
 
+    new Choices("#modalSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select Modal(s)"
+  });
 
 });
 
@@ -114,6 +121,7 @@ document.getElementById('searchForm').addEventListener('reset', function (event)
   document.getElementById("glosshere").textContent = "";
   document.getElementById("resultCount").textContent = "";
  document.getElementById("numberCount").textContent = "";
+ 
 
 
 });
@@ -144,6 +152,8 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   const selectedPerson = getSelectedValues("personSelect");
   const selectedNumber = getSelectedValues("numberSelect");
   const selectedFilters = getSelectedValues("filterSelect");
+  const selectedModal = getSelectedValues("modalSelect"); 
+
 
 
   //// changes output to lowercase so values aren't filtered out 
@@ -157,6 +167,41 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     const matchesFilters = selectedFilters.every((filter) => {
       return verb[filter] === "1";
     });
+    ///review these filters added 
+   const matchesModal =
+  selectedModal.length === 0 ||
+  selectedModal.every((filter) => {
+
+    if (filter === "mod") {
+      return verb.mod === "1";
+    }
+
+    if (filter === "nonmod") {
+      return verb.mod === "0" || !verb.mod;
+    }
+
+    if (filter === "dir") {
+      return verb.dir === "1";
+    }
+
+    if (filter === "prohib") {
+      return verb.prohib === "1";
+    }
+
+    if (filter === "directive") {
+      return verb.dir === "1" || verb.prohib === "1";
+    }
+
+    if (filter === "funcsjv") {
+      return verb.sjv === "1";
+    }
+
+    if (filter === "funcopt") {
+      return verb.opt === "1";
+    }
+
+    return true;
+  });
 
     /// creates truth/false variable
     const matchesVoice =
@@ -205,14 +250,15 @@ document.getElementById('searchForm').addEventListener('submit', function (event
       selectedPvv.length === 0 || selectedPvv.some((pvv) => {
         return verb.pv?.includes(pvv);
       });
-
+   
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
     console.log(verb.trans);
     console.log(verb.pvv);
+    console.log(verb.mod); 
 
-    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch;
+    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal;
   });
 
   ///console logs 
@@ -274,7 +320,12 @@ async function testXML() {
     const casee = verb.getAttribute("case");
     const gender = verb.getAttribute("gender");
     const number = verb.getAttribute("number");
-    const person = verb.getAttribute("person");
+    const person = verb.getAttribute("person"); 
+    const dir = verb.getAttribute("dir");
+    const prohib = verb.getAttribute("prohib");
+    const sjv = verb.getAttribute("sjv");
+    const opt = verb.getAttribute("opt");
+
 
     ///pushes it 
     verbData.push({
@@ -308,6 +359,11 @@ async function testXML() {
       gender,
       number,
       person,
+      mod,
+      dir, 
+      prohib, 
+      sjv, 
+      opt, 
 
     });
   });
@@ -351,6 +407,7 @@ function clearMiniResults() {
 function displayResults(results, searchTerm, selectAttribute) {  ///pushes selectAttribute now (wordForm, root)
   const wordFormList = document.getElementById("wordFormList");
   wordFormList.innerHTML = "";
+
   clearMiniResults();
   const heading = document.createElement("h4");
   heading.textContent = `Results for roots: ${searchTerm}`; //display search term 
@@ -448,18 +505,41 @@ function displayDetails(verb) {
   document.getElementById("textincontext").textContent =
     `${verb.padaId}: ${verb.padaText}`;
 
+  /* result display */ 
+  let resultdisplay; 
 
-  document.getElementById("preverbdisplay").textContent =
-    (!verb.pv || verb.pv === "0") ? "none" : verb.pv;
+  if (!verb.pv || verb.pv === "0") {
+    resultdisplay = "none";
+  } else {
+    resultdisplay = verb.pv;
+  }
+  document.getElementById("preverbdisplay").textContent = resultdisplay;
 
-  document.getElementById("translation").textContent =
-    verb.trans || "";
 
-  document.getElementById("tense").textContent =
-    verb.tense || "";
+  if(verb.trans){
+    document.getElementById("translation").textContent = verb.trans; 
+  }else{
+    document.getElementById("translation").textContent = ""; 
+  }
 
-  document.getElementById("mood").textContent =
-    verb.mood || "";
+ 
+
+  if(verb.mood){
+    document.getElementById("mood").textContent = verb.mood; 
+  }else{
+    document.getElementById("mood").textContent = "";
+  }
+
+  const tense = verb.tense || "";
+
+document.getElementById("tense").textContent =
+  tense.includes("Pres") ? "Present" :
+  tense.includes("Aor") ? "Aorist" :
+  tense.includes("Ipf") ? "Imperfect" :
+  tense.includes("Plpf") ? "Pluperfect" :
+  tense.includes("Pf") ? "Perfect" :
+  tense.includes("Cond") ? "Conditional" :
+  "";
 
   const parse = verb.parse || "";
 
@@ -490,9 +570,9 @@ function displayDetails(verb) {
 
  console.log(verb.trans);
  console.log(number); 
- console.log(verb.case);
  console.log(gender); 
- 
+ console.log(verb.tense); 
+
 
 
 }

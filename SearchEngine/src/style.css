@@ -478,6 +478,12 @@ input::placeholder {
   width: 330px;
 }
 
+.modal-group {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+}
+
 .number-group {
   display: flex;
   flex-direction: column;
