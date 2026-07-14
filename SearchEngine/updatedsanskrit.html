@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vite-project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body id="top">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-group">
+        <img src="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png" alt="CorpusVista Logo" class="logo-mark">
+
+        <div class="logo-text">
+          <h1><a href="index.html"> Aestimanda</a>
+          </h1>
+          <p>A Comparative Corpus of Verbal Usage in Homer and the Rig Veda</p>
+        </div>
+      </div>
+
+      <div class="header-icons">
+        <div class="help-dropdown">
+          <button class="help-button">?</button>
+
+          <div class="dropdown-menu2">
+            <a href="#">Report a Problem</a>
+            <a href="sanskrit.html">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <a href="index.html">ⓘ Project</a>
+
+      <div class="nav-dropdown">
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+          Search
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="#">Greek</a>
+          <a href="updatedsanskrit.html">Sanskrit</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="page">
+
+    <h2>Search</h2>
+
+    <section class="content-card">
+      <h3>Search the Corpus</h3>
+
+      <p>
+        Enter a verb or wordform in Sanskrit and optionally filter by morphological attributes.
+      </p>
+
+      <form id="searchForm">
+        <div class="search-top-row">
+          <div class="search-input-group">
+            <h6>Search</h6>
+
+            <div class="search-wrapper">
+              <input type="text" id="searchInput" placeholder="e.g. jan, bhū, ájani...">
+
+              <button type="button" id="keyboardButton" title="Open Sanskrit keyboard">
+                ā
+              </button>
+
+              <div id="sanskritKeyboard" class="sanskrit-keyboard" hidden>
+                <button type="button" data-char="ā">ā</button>
+                <button type="button" data-char="ī">ī</button>
+                <button type="button" data-char="ū">ū</button>
+                <button type="button" data-char="ṛ">ṛ</button>
+                <button type="button" data-char="ṝ">ṝ</button>
+                <button type="button" data-char="ḷ">ḷ</button>
+                <button type="button" data-char="ṃ">ṃ</button>
+                <button type="button" data-char="ḥ">ḥ</button>
+                <button type="button" data-char="ṅ">ṅ</button>
+                <button type="button" data-char="ñ">ñ</button>
+                <button type="button" data-char="ṭ">ṭ</button>
+                <button type="button" data-char="ḍ">ḍ</button>
+                <button type="button" data-char="ṇ">ṇ</button>
+                <button type="button" data-char="ś">ś</button>
+                <button type="button" data-char="ṣ">ṣ</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="type-input-group">
+            <h6>Type</h6>
+            <select id="attribute">
+              <option value="root">Root</option>
+              <option value="wordForm">Wordform</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row1">
+          <div class="preverb-group">
+            <label for="preverbSelect">Preverb</label>
+            <select id="preverbSelect" multiple>
+              <option value="abhí">abhí</option>
+              <option value="abhí prá">abhí prá</option>
+              <option value="anu">anu</option>
+              <option value="ní">ní</option>
+              <option value="ní ā́">ní ā́</option>
+              <option value="nís">nís</option>
+              <option value="prá">prá</option>
+              <option value="práti">práti</option>
+              <option value="pári">pári</option>
+              <option value="pári ā́">pári ā́</option>
+              <option value="párā">párā</option>
+              <option value="sam">sam</option>
+              <option value="su">su</option>
+              <option value="sám">sám</option>
+              <option value="sám ádhi">sám ádhi</option>
+              <option value="sám ā́">sám ā́</option>
+              <option value="ud">ud</option>
+              <option value="ví">ví</option>
+              <option value="ví ánu">ví ánu</option>
+              <option value="ví ā́">ví ā́</option>
+              <option value="ánu">ánu</option>
+              <option value="ápa">ápa</option>
+              <option value="ápi">ápi</option>
+              <option value="áti">áti</option>
+              <option value="áva">áva</option>
+              <option value="úd">úd</option>
+              <option value="úpa">úpa</option>
+              <option value="ā́">ā́</option>
+              <option value="ā́ pári">ā́ pári</option>
+              <option value="ā́ ví">ā́ ví</option>
+            </select>
+          </div>
+          <div class="tense-group">
+            <label for="tenseSelect">Tense</label>
+            <select id="tenseSelect" multiple>
+              <option value="Aor">Aor</option>
+              <option value="Pres">Present</option>
+              <option value="Ipf">Imperfective</option>
+              <option value="Plpf">Pluperfect</option>
+              <option value="Pf">Perfect</option>
+              <option value="Cond">Conditional</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="time-group">
+            <label for="timeSelect">Time</label>
+            <select id="timeSelect" multiple>
+              <option value="past">Past</option>
+              <option value="present">Present</option>
+              <option value="future">Future</option>
+            </select>
+          </div>
+          <div class="mood-group">
+            <label for="moodSelect">Mood</label>
+            <select id="moodSelect" multiple>
+              <option value="ind">Ind</option>
+              <option value="sjv">sjv</option>
+              <option value="opt">opt</option>
+              <option value="ipv">ipv</option>
+              <option value="inj">inj</option>
+            </select>
+          </div>
+        </div>
+        <section class="expanded-card">
+          <h4>Advanced Filters</h4>
+          <div class="row1">
+            <div class="voice-group">
+              <label for="voiceSelect">Voice</label>
+              <select id="voiceSelect" multiple>
+                <option value="act">act</option>
+                <option value="mid">mid</option>
+                <option value="psv">psv</option>
+              </select>
+            </div>
+            <div class="case-group">
+              <label for="caseSelect">Case</label>
+              <select id="caseSelect" multiple>
+                <option value="nom">nom</option>
+                <option value="gen">gen</option>
+                <option value="dat">dat</option>
+                <option value="acc">acc</option>
+              </select>
+            </div>
+          </div>
+          <div class="row1">
+            <div class="gender-group">
+              <label for="genderSelect">Gender</label>
+              <select id="genderSelect" multiple>
+                <option value="m">Masculine</option>
+                <option value="f">Feminine</option>
+                <option value="n">Neutral</option>
+              </select>
+            </div>
+            <div class="person-group">
+              <label for="personSelect">Person</label>
+              <select id="personSelect" multiple>
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+              </select>
+            </div>
+          </div>
+          <div class="row1">
+            <div class="number-group">
+              <label for="numberSelect">Number</label>
+              <select id="numberSelect" multiple>
+                <option value="sg">Singular</option>
+                <option value="pl">Plural</option>
+                <option value="du">Dual</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="filterSelect">Function Filters</label>
+              <select id="filterSelect" multiple>
+                <option value="mod">Modal</option>
+                <option value="hab">Habitual</option>
+                <option value="exp">Experiential</option>
+                <option value="rptv">Reportative</option>
+                <option value="term">Terminative</option>
+                <option value="gnom">Gnomic</option>
+                <option value="univ">Universal</option>
+                <option value="ipfv">Imperfective</option>
+                <option value="rsltv">Resulative</option>
+              </select>
+            </div>
+          </div>
+          <div class="row1">
+            <div class="formal-group">
+              <label for="formalSelect">Negation Filters</label>
+              <select id="formalSelect">
+                <option value="">All Filters</option>
+                <option value="neg">Negated</option>
+                <option value="aug">Augmented</option>
+              </select>
+            </div>
+            <div class="modal-group">
+              <label for="modalSelect">Modal Filters</label>
+              <select id="modalSelect" multiple>
+                <option value="">All Filters</option>
+                <option value="mod">Modal</option>
+                <option value="nonmod">Non-Modal</option>
+                <option value="dir">Imperative</option>
+                <option value="prohib">Prohibitive</option>
+                <option value="directive">Directive</option>
+                <option value="funcsjv">Functional sjv</option>
+                <option value="funcopt">Functional opt</option>
+              </select>
+            </div>
+          </div>
+          <div class="row1">
+            <div class="textualReadings">
+              <label for="textualSelect">Textual Readings</label>
+              <select id="textualSelect">
+                <option value="dub">Secure Readings</option>
+                <option value="altr">No Alternative Readings</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <div class="expandable-section">
+        <button class="expand-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="55" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+
+        <button class="collapse-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+  <div id="bttnrow">
+    <div id="bttncontainer">
+      <!-- From Uiverse.io by andrew-demchenk0 -->
+      <button type="submit" class="sbutton" form="searchForm" id="submitButton">
+        <span class="button__text">Search</span>
+        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-search-icon lucide-search">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg></span>
+      </button>
+
+    </div>
+
+    <div id="reset-container">
+      <button type="reset" class="rbutton" form="searchForm" id="resetButton">
+        <span class="button__text">Clear</span>
+
+        <span class="button__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="M6 6 18 18"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+  </div>
+
+  <section class="page">
+    <div id="Textandcount">
+      <p id="resultCount"></p>
+      <p id="numberCount"></p>
+    </div>
+  </section>
+  <section class="page2">
+    <div id="ResultsandMiniresults">
+      <div id="Results">
+        <p id="word">Result</p>
+        <p id="thinnerword">wordform</p>
+        <p id="glosshere"></p>
+        <div class="line"></div>
+        <ul id="wordFormList">No searches yet
+        </ul>
+      </div>
+
+      <div id="Miniresults">
+        <p id="textincontext"> Text in Context</p>
+        <div id="preverbrow">
+          <h6> Preverb:</h6>
+          <p id="preverbdisplay"></p>
+        </div>
+        <div id="translationrow">
+          <h6> Translation:</h6>
+          <p id="translation"></p>
+        </div>
+        <div id="adverbrow">
+          <h6> Adverb:</h6>
+          <p id="adv"></p>
+        </div>
+        <div id="noterow">
+          <h6> Note:</h6>
+          <p id="note"></p>
+        </div>
+        <div id="tenserow">
+          <p id="tense"></p>
+        </div>
+        <div id="moodrow">
+          <p id="mood"></p>
+        </div>
+        <div id="caserow">
+          <p id="case"></p>
+        </div>
+        <div id="genderrow">
+          <p id="gender"></p>
+        </div>
+        <div id="numberrow">
+          <p id="number"></p>
+        </div>
+        <div id="personrow">
+          <p id="person"></p>
+        </div>
+        <div id="usagerow">
+          <p id="usage"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script type="module" src="/src/script.js"></script>
+  <footer class="site-footer">
+    <p class="cite-text">
+      <strong> something here </strong> &lt;date of access&gt;.
+    </p>
+    <div class="footer-links">
+      <a href="#">License</a>
+      <a href="#">Privacy policy</a>
+    </div>
+
+    <p class="footer-credit">
+      &copy; jk Inc. All rights reserved.
+    </p>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">
+      <!-- From Uiverse.io by vinodjangid07 -->
+      <button class="button">
+        <svg class="svgIcon" viewBox="0 0 384 512">
+          <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+          </path>
+        </svg>
+      </button>
+    </a>
+  </footer>
+  <script type="module" src="/src/fakescript.js"></script>
+</body>
+
+</html>
