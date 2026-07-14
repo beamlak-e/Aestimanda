@@ -1,4 +1,26 @@
-import './style.css';
+import './fakestyle.css';
+
+
+
+////expand-button
+const btn = document.querySelector('.expand-button');
+const expandedCard = document.querySelector('.expanded-card');
+const collapseBtn = document.querySelector('.collapse-button');
+
+btn.addEventListener('click', function () {
+  expandedCard.style.display = "block";
+
+  btn.style.display = "none";
+  collapseBtn.style.display = "block";
+
+  collapseBtn.addEventListener('click', function () {
+    expandedCard.style.display = "none";
+    btn.style.display = "block";
+    collapseBtn.style.display = "none";
+  });
+
+});
+
 
 //creates empty array that we later store string from 
 let verbData = [];
@@ -93,12 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
     placeholderValue: "Select filter"
   });
 
-    new Choices("#modalSelect", {
+  new Choices("#modalSelect", {
     removeItemButton: true,
     searchEnabled: true,
     shouldSort: false,
     itemSelectText: "",
     placeholderValue: "Select Modal(s)"
+  });
+
+  new Choices("#textualSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select Textual Reading Filter(s)"
   });
 
 });
@@ -114,14 +144,16 @@ document.getElementById('searchForm').addEventListener('reset', function (event)
   document.getElementById("number").textContent = "";
   document.getElementById("person").textContent = "";
   document.getElementById("usage").textContent = "";
+  document.getElementById("adv").textContent = "";
   document.getElementById("word").textContent = "Result";
-  document.getElementById("thinnerword").textContent =   "wordform";
+  document.getElementById("thinnerword").textContent = "wordform";
   document.getElementById("wordFormList").innerHTML =
     "<li>No searches yet</li>";
   document.getElementById("glosshere").textContent = "";
   document.getElementById("resultCount").textContent = "";
- document.getElementById("numberCount").textContent = "";
- 
+  document.getElementById("numberCount").textContent = "";
+  document.getElementById("note").textContent = "";
+
 
 
 });
@@ -152,7 +184,8 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   const selectedPerson = getSelectedValues("personSelect");
   const selectedNumber = getSelectedValues("numberSelect");
   const selectedFilters = getSelectedValues("filterSelect");
-  const selectedModal = getSelectedValues("modalSelect"); 
+  const selectedModal = getSelectedValues("modalSelect");
+  const selectedTextual = getSelectedValues("textualSelect");
 
 
 
@@ -165,43 +198,64 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
     /// If clicked its true so abtituary value should be 1 
     const matchesFilters = selectedFilters.every((filter) => {
+      if (filter === "altr") {
+        return verb.altr !== "1";
+      }
+
+      if (filter == "dub") {
+        return verb.dub !== "1";
+      }
       return verb[filter] === "1";
     });
+
+    const matchesTextual =
+      selectedTextual.length === 0 ||
+      selectedTextual.every((filter) => {
+        if (filter === "altr") {
+          return verb.altr !== "1";
+        }
+
+        if (filter == "dub") {
+          return verb.dub !== "1";
+        }
+        return true;
+      });
+
     ///review these filters added 
-   const matchesModal =
-  selectedModal.length === 0 ||
-  selectedModal.every((filter) => {
+    const matchesModal =
+      selectedModal.length === 0 ||
+      selectedModal.every((filter) => {
 
-    if (filter === "mod") {
-      return verb.mod === "1";
-    }
+        if (filter === "mod") {
+          return verb.mod === "1";
+        }
 
-    if (filter === "nonmod") {
-      return verb.mod === "0" || !verb.mod;
-    }
+        if (filter === "nonmod") {
+          return verb.mod === "0" || !verb.mod;
+        }
 
-    if (filter === "dir") {
-      return verb.dir === "1";
-    }
+        if (filter === "dir") {
+          return verb.dir === "1";
+        }
 
-    if (filter === "prohib") {
-      return verb.prohib === "1";
-    }
+        if (filter === "prohib") {
+          return verb.prohib === "1";
+        }
 
-    if (filter === "directive") {
-      return verb.dir === "1" || verb.prohib === "1";
-    }
+        if (filter === "directive") {
+          return verb.dir === "1" || verb.prohib === "1";
+        }
 
-    if (filter === "funcsjv") {
-      return verb.sjv === "1";
-    }
+        if (filter === "funcsjv") {
+          return verb.sjv === "1";
+        }
 
-    if (filter === "funcopt") {
-      return verb.opt === "1";
-    }
+        if (filter === "funcopt") {
+          return verb.opt === "1";
+        }
 
-    return true;
-  });
+        return true;
+      });
 
     /// creates truth/false variable
     const matchesVoice =
@@ -250,15 +304,15 @@ document.getElementById('searchForm').addEventListener('submit', function (event
       selectedPvv.length === 0 || selectedPvv.some((pvv) => {
         return verb.pv?.includes(pvv);
       });
-   
+
     console.log(verb.parse);
     console.log(verb.tense);
     console.log(verb.time);
     console.log(verb.trans);
     console.log(verb.pvv);
-    console.log(verb.mod); 
+    console.log(verb.mod);
 
-    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal;
+    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual;
   });
 
   ///console logs 
@@ -320,11 +374,13 @@ async function testXML() {
     const casee = verb.getAttribute("case");
     const gender = verb.getAttribute("gender");
     const number = verb.getAttribute("number");
-    const person = verb.getAttribute("person"); 
+    const person = verb.getAttribute("person");
     const dir = verb.getAttribute("dir");
     const prohib = verb.getAttribute("prohib");
     const sjv = verb.getAttribute("sjv");
     const opt = verb.getAttribute("opt");
+    const adv = verb.getAttribute("adv");
+    const note = verb.getAttribute("note");
 
 
     ///pushes it 
@@ -360,10 +416,13 @@ async function testXML() {
       number,
       person,
       mod,
-      dir, 
-      prohib, 
-      sjv, 
-      opt, 
+      dir,
+      prohib,
+      sjv,
+      opt,
+      adv,
+      note,
+
 
     });
   });
@@ -400,6 +459,7 @@ function clearMiniResults() {
   document.getElementById("number").textContent = "";
   document.getElementById("person").textContent = "";
   document.getElementById("usage").textContent = "";
+  document.getElementById("adv").textContent = "";
 
 }
 
@@ -505,8 +565,8 @@ function displayDetails(verb) {
   document.getElementById("textincontext").textContent =
     `${verb.padaId}: ${verb.padaText}`;
 
-  /* result display */ 
-  let resultdisplay; 
+  /* result display */
+  let resultdisplay;
 
   if (!verb.pv || verb.pv === "0") {
     resultdisplay = "none";
@@ -516,30 +576,28 @@ function displayDetails(verb) {
   document.getElementById("preverbdisplay").textContent = resultdisplay;
 
 
-  if(verb.trans){
-    document.getElementById("translation").textContent = verb.trans; 
-  }else{
-    document.getElementById("translation").textContent = ""; 
+  if (verb.trans) {
+    document.getElementById("translation").textContent = verb.trans;
+  } else {
+    document.getElementById("translation").textContent = "";
   }
 
- 
-
-  if(verb.mood){
-    document.getElementById("mood").textContent = verb.mood; 
-  }else{
+  if (verb.mood) {
+    document.getElementById("mood").textContent = verb.mood;
+  } else {
     document.getElementById("mood").textContent = "";
   }
 
   const tense = verb.tense || "";
 
-document.getElementById("tense").textContent =
-  tense.includes("Pres") ? "Present" :
-  tense.includes("Aor") ? "Aorist" :
-  tense.includes("Ipf") ? "Imperfect" :
-  tense.includes("Plpf") ? "Pluperfect" :
-  tense.includes("Pf") ? "Perfect" :
-  tense.includes("Cond") ? "Conditional" :
-  "";
+  document.getElementById("tense").textContent =
+    tense.includes("Pres") ? "Present" :
+      tense.includes("Aor") ? "Aorist" :
+        tense.includes("Ipf") ? "Imperfect" :
+          tense.includes("Plpf") ? "Pluperfect" :
+            tense.includes("Pf") ? "Perfect" :
+              tense.includes("Cond") ? "Conditional" :
+                "";
 
   const parse = verb.parse || "";
 
@@ -568,12 +626,31 @@ document.getElementById("tense").textContent =
         parse.includes("3rd") ? "3rd Person" :
           "";
 
- console.log(verb.trans);
- console.log(number); 
- console.log(gender); 
- console.log(verb.tense); 
+  console.log(verb.trans);
+  console.log(number);
+  console.log(gender);
+  console.log(verb.tense);
 
 
+  const noteText = document.getElementById("note");
+  const noteRow = document.getElementById("noterow");
+     if (verb.note?.trim()) {
+      noteRow.style.display = "block";
+      document.getElementById("note").textContent = verb.note;
+    } else {
+      noteRow.style.display = "none";
+      noteText.textContent = ""; 
+    }
+
+   const adverbRow = document.getElementById("adverbrow");
+     if (verb.adv) {
+      adverbRow.style.display = "block";
+      document.getElementById("adv").textContent = verb.adv;
+    } else {
+      adverbRow.style.display = "none";
+    }
+
+  
 
 }
 
@@ -582,6 +659,7 @@ function displayOccurrences(occurrences) {
   wordFormList.innerHTML = "";
 
   const firstVerb = occurrences[0];
+  
 
   const glosshere = document.getElementById("glosshere");
   if (glosshere) {
@@ -595,6 +673,13 @@ function displayOccurrences(occurrences) {
     listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
     listItem.classList.add("context-line");
 
+    if (verb.altr === "1") {
+      listItem.classList.add("alternative-reading");
+    }
+    if (verb.dub === "1") {
+      listItem.classList.add("dubious-reading");
+    }
+
     listItem.addEventListener("click", () => {
       displayDetails(verb);
     });
@@ -604,3 +689,37 @@ function displayOccurrences(occurrences) {
 }
 
 testXML();
+
+/* keyboard */ 
+
+
+
+const searchInput = document.getElementById("searchInput");
+const keyboardButton = document.getElementById("keyboardButton");
+const sanskritKeyboard = document.getElementById("sanskritKeyboard");
+
+keyboardButton.addEventListener("click", () => {
+  sanskritKeyboard.hidden = !sanskritKeyboard.hidden;
+});
+
+sanskritKeyboard.addEventListener("click", (event) => {
+  const key = event.target.closest("[data-char]");
+
+  if (!key) {
+    return;
+  }
+
+  const character = key.dataset.char;
+  const start = searchInput.selectionStart;
+  const end = searchInput.selectionEnd;
+
+  searchInput.value =
+    searchInput.value.slice(0, start) +
+    character +
+    searchInput.value.slice(end);
+
+  const newCursorPosition = start + character.length;
+
+  searchInput.focus();
+  searchInput.setSelectionRange(newCursorPosition, newCursorPosition);
+});

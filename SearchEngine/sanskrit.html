@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vite-project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- correct file -->
+<!-- hey file -->
+
+<body>
+  <header class="navbar">
+    <h3>PROJECTNAME</h3>
+    <div id="SearchContainer">
+      <div id="Searchlink">
+        <ul>
+          <li> <a href="index.html"> About</a></li>
+          <li><a href="#"> Report a Problem</a></li>
+        </ul>
+      </div>
+      <div id="SearchB">
+        <a href="#"> Contact Us</a>
+      </div>
+    </div>
+  </header>
+  <div id="title-row">
+    <img src="./src/assets/img/language.svg" alt="Language icon" class="language-img">
+    <h1> Classical Language Corpus </h1>
+    </div>
+  <div id="title-row-underneathtext">
+    <h4> Search verb forms and explore context from Ancient Greek and Sanskrit literature </h4>
+
+  </div>
+  <main>
+  <div id="Search">
+    <div id="SearchRow">
+      <div class="biconicon">
+        <i class="bi bi-search"></i>
+      </div>
+      <h6> Search the Corpus</h6>
+      <!-- <span class="hidden lg:inline-flex">Search docs...</span> -->
+    </div>
+
+    <p>Enter a verb or wordform in Sanskrit and optionally filter by morphological attributes </p>
+    <div id="dropdown-container">
+
+      <form id="searchForm">
+        <div class="search-top-row">
+
+          <div class="search-input-group">
+            <h6>Search</h6>
+            <input type="text" id="searchInput" placeholder="e.g. jan, bhū, ájani...">
+          </div>
+
+          <div class="type-input-group">
+            <h6>Type</h6>
+            <select id="attribute">
+              <option value="root">Root</option>
+              <option value="wordForm">Wordform</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-area">
+        <div class="row1">
+          <div class="preverb-group">
+            <label for="preverbSelect">Preverb</label>
+            <select id="preverbSelect" multiple>
+              <option value="abhí">abhí</option>
+              <option value="abhí prá">abhí prá</option>
+              <option value="anu">anu</option>
+              <option value="ní">ní</option>
+              <option value="ní ā́">ní ā́</option>
+              <option value="nís">nís</option>
+              <option value="prá">prá</option>
+              <option value="práti">práti</option>
+              <option value="puráḥ">puráḥ</option>
+              <option value="pári">pári</option>
+              <option value="pári ā́">pári ā́</option>
+              <option value="párā">párā</option>
+              <option value="sam">sam</option>
+              <option value="su">su</option>
+              <option value="sám">sám</option>
+              <option value="sám ádhi">sám ádhi</option>
+              <option value="sám ā́">sám ā́</option>
+              <option value="ud">ud</option>
+              <option value="ví">ví</option>
+              <option value="ví ánu">ví ánu</option>
+              <option value="ví ā́">ví ā́</option>
+              <option value="ánu">ánu</option>
+              <option value="ápa">ápa</option>
+              <option value="ápi">ápi</option>
+              <option value="áti">áti</option>
+              <option value="áva">áva</option>
+              <option value="úd">úd</option>
+              <option value="úpa">úpa</option>
+              <option value="ā́">ā́</option>
+              <option value="ā́ pári">ā́ pári</option>
+              <option value="ā́ ví">ā́ ví</option>
+            </select>
+          </div>
+          <div class="tense-group">
+            <label for="tenseSelect">Tense</label>
+            <select id="tenseSelect" multiple>
+              <option value="Aor">Aor</option>
+              <option value="Pres">Present</option>
+              <option value="Ipf">Imperfective</option>
+              <option value="Plpf">Pluperfect</option>
+              <option value="Pf">Perfect</option>
+              <option value="Cond">Conditional</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="time-group">
+            <label for="timeSelect">Time</label>
+            <select id="timeSelect" multiple>
+              <option value="past">Past</option>
+              <option value="present">Present</option>
+              <option value="future">Future</option>
+            </select>
+          </div>
+          <div class="mood-group">
+            <label for="moodSelect">Mood</label>
+            <select id="moodSelect" multiple>
+              <option value="ind">Ind</option>
+              <option value="sjv">sjv</option>
+              <option value="opt">opt</option>
+              <option value="ipv">ipv</option>
+               <option value="inj">inj</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="voice-group">
+            <label for="voiceSelect">Voice</label>
+            <select id="voiceSelect" multiple>
+              <option value="act">act</option>
+              <option value="mid">mid</option>
+              <option value="psv">psv</option>
+            </select>
+          </div>
+          <div class="case-group">
+            <label for="caseSelect">Case</label>
+            <select id="caseSelect" multiple>
+              <option value="nom">nom</option>
+              <option value="gen">gen</option>
+              <option value="dat">dat</option>
+              <option value="acc">acc</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="gender-group">
+            <label for="genderSelect">Gender</label>
+            <select id="genderSelect" multiple>
+              <option value="m">Masculine</option>
+              <option value="f">Feminine</option>
+              <option value="n">Neutral</option>
+            </select>
+          </div>
+          <div class="person-group">
+            <label for="personSelect">Person</label>
+            <select id="personSelect" multiple>
+              <option value="1">1st</option>
+              <option value="2">2nd</option>
+              <option value="3">3rd</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="number-group">
+            <label for="numberSelect">Number</label>
+            <select id="numberSelect" multiple>
+              <option value="sg">Singular</option>
+              <option value="pl">Plural</option>
+              <option value="du">Dual</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterSelect">Filter</label>
+            <select id="filterSelect" multiple>
+              <option value="mod">Modal</option>
+              <option value="hab">Habitual</option>
+              <option value="exp">Experiential</option>
+              <option value="rptv">Reportative</option>
+              <option value="term">Terminative</option>
+              <option value="gnom">Gnomic</option>
+              <option value="univ">Universal</option>
+              <option value="ipfv">Imperfective</option>
+              <option value="rsltv">Resulative</option>
+              <option value="dub">Secure Search</option>
+              <option value="altr">No Alternative Readings</option>
+            </select>
+          </div>
+        </div>
+        <div class="row1">
+          <div class="formal-group">
+            <label for="formalSelect">Formal Filters</label>
+            <select id="formalSelect">
+              <option value="">All Filters</option>
+              <option value="neg">Negated</option>
+              <option value="aug">Augmented</option>
+            </select>
+          </div>
+          <div class="modal-group">
+            <label for="modalSelect">Modal Filters</label>
+            <select id="modalSelect" multiple>
+              <option value="">All Filters</option>
+              <option value="mod">Modal</option>
+              <option value="nonmod">Non-Modal</option>
+              <option value="dir">Imperative</option>
+              <option value="prohib">Prohibitive</option>
+               <option value="directive">Directive</option>
+              <option value="funcsjv">Functional sjv</option>
+              <option value="funcopt">Functional opt</option>
+            </select>
+          </div>
+        </div>
+        </div>
+         </form>
+    </div>
+  </div>
+  </main>
+    <div id="bttnrow">
+      <div id="bttncontainer">
+           <div id="submit">
+          <button type="submit" form="searchForm">Search</button>
+          </div>
+           <div id="reset" form="searchForm">
+          <button type="reset" form="searchForm">Clear</button>
+        </div>
+        </div>
+   </div>
+
+  <!-- Three info cards   -->
+ <div id="thingc">
+
+    <div id="thing1">
+      <div class="bicon 2">
+        <i class="bi bi-search"></i>
+      </div>
+      <h4> Search</h4>
+      <div class="thingtext">
+        <p> Search by root or lemma to locate verb occurrences thought the corpus</p>
+      </div>
+    </div>
+
+    <div id="thing2">
+      <div class="bicon">
+        <i class="bi bi-filter"></i>
+      </div>
+      <h4> Grammatical Filters</h4>
+      <div class="thingtext">
+        <p> Filter results by tense, mood, number and other linguistic attributes</p>
+      </div>
+    </div>
+
+    <div id="thing3">
+      <div class="bicon3">
+        <i class="bi bi-journals"></i>
+      </div>
+      <h4> Contextual Analysis</h4>
+      <div class="thingtext">
+        <p>View occurrences in context alongside translation glosses and grammatical info</p>
+      </div>
+    </div>
+  </div>
+  <div id="Textandcount">
+    <p id="resultCount"></p>
+    <p id="numberCount"></p>
+  </div>
+  <div id="ResultsandMiniresults">
+    <div id="Results">
+      <p id="word">Result</p>
+      <p id="thinnerword">wordform</p>
+      <p id="glosshere"></p>
+      <div class="line"></div>
+      <ul id="wordFormList">No searches yet
+      </ul>
+    </div>
+    <div id="Miniresults">
+      <p id="textincontext"> Text in Context</p>
+      <div id="preverbrow">
+        <h6> Preverb:</h6>
+        <p id="preverbdisplay"></p>
+      </div>
+      <div id="translationrow">
+        <h6> Translation:</h6>
+        <p id="translation"></p>
+      </div>
+      <div id="tenserow">
+        <p id="tense"></p>
+      </div>
+      <div id="moodrow">
+         <p id="mood"></p>
+      </div>
+       <div id="caserow">
+        <p id="case"></p>
+      </div>
+      <div id="genderrow">
+        <p id="gender"></p>
+      </div>
+       <div id="numberrow">
+        <p id="number"></p>
+      </div>
+      <div id="personrow">
+        <p id="person"></p>
+      </div>
+      <div id="usagerow">
+        <p id="usage"></p>
+      </div>
+  </div>
+</div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
