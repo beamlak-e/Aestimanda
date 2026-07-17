@@ -186,6 +186,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   const selectedFilters = getSelectedValues("filterSelect");
   const selectedModal = getSelectedValues("modalSelect");
   const selectedTextual = getSelectedValues("textualSelect");
+  const selectedFormal = getSelectedValues("formalSelect");
 
 
 
@@ -220,6 +221,21 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         }
         return true;
       });
+     
+      const matchesFormal =
+            selectedFormal.length === 0 ||
+            selectedFormal.some((filter) => {
+                if (filter === "neg") {
+                    return verb.neg === "1";
+                }
+
+                if (filter === "aug") {
+                    return verb.aug === "1";
+                }
+
+                return true;
+            });
+
 
     ///review these filters added 
     const matchesModal =
@@ -312,7 +328,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     console.log(verb.pvv);
     console.log(verb.mod);
 
-    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual;
+    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual && matchesFormal ;
   });
 
   ///console logs 
@@ -507,19 +523,19 @@ function displayResults(results, searchTerm, selectAttribute) {  ///pushes selec
     if (selectAttribute === "wordForm") {
       resultCount.textContent = `Retrieved word form represented by ${results.length} result(s)`;
     } else {
-      resultCount.textContent = `Retrieved lementa represented by ${results.length} result(s)`;
+      resultCount.textContent = `Retrieved ${results.length} occurrences`;
     }
   }
 
 
   const numberCount = document.getElementById("numberCount");
-  if (numberCount) {
-    if (selectAttribute === "wordForm") {
-      numberCount.textContent = `Count: ${results.length}`;
-    } else {
-      numberCount.textContent = `Count: ${results.length}`;
-    }
-  }
+//  if (numberCount) {
+//    if (selectAttribute === "wordForm") {
+//      numberCount.textContent = `Count: ${results.length}`;
+//    } else {
+//      numberCount.textContent = `Count: ${results.length}`;
+//   }
+//  }
 
   //// will return no matches if no matches found 
   if (results.length === 0) {
@@ -556,7 +572,9 @@ function showOccurrencesForWordForm(wordForm) {
   const occurrences = verbData.filter((verb) => {
     return verb.wordForm === wordForm;
   });
-
+  ////gets it again so basicallty results for seleccted filter-> word clicked (like normal)
+   document.getElementById("word").textContent = wordForm;
+  document.getElementById("thinnerword").textContent = wordForm;
   displayOccurrences(occurrences);
 }
 
@@ -673,7 +691,7 @@ function displayOccurrences(occurrences) {
     listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
     listItem.classList.add("context-line");
 
-    if (verb.altr === "1") {
+    if (verb.altr?.trim()) {
       listItem.classList.add("alternative-reading");
     }
     if (verb.dub === "1") {

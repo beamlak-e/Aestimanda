@@ -75,7 +75,7 @@
       <h3>Search the Corpus</h3>
 
       <p>
-        Enter a verb or wordform in Sanskrit and optionally filter by morphological attributes.
+        Enter a verb or wordform in Greek and optionally filter by morphological attributes.
       </p>
 
       <form id="searchForm">
@@ -89,34 +89,18 @@
               <button type="button" id="keyboardButton" title="Open Sanskrit keyboard">
                 ā
               </button>
-  <!--ṇṣ. ūtī́-->
+
               <div id="sanskritKeyboard" class="sanskrit-keyboard" hidden>
-                <!--ROW one -->
                 <button type="button" data-char="ā">ā</button>
-                <button type="button" data-char="ã">ã</button>
                 <button type="button" data-char="ī">ī</button>
                 <button type="button" data-char="ū">ū</button>
-                <button type="button" data-char="r̥">r̥</button>
-                <!--ROW 2-->
-                 <button type="button" data-char="á">á</button>
-                 <button type="button" data-char="ā́">ā́</button>
-                <button type="button" data-char="ã́">ã́</button>
-                 <button type="button" data-char="í">í</button>
-                 <button type="button" data-char="ī́">ī́</button>
-                 <!--ROW 3-->
-                 <button type="button" data-char="ú">ú</button>
-                 <button type="button" data-char="ū́">ū́</button>
-                 <button type="button" data-char="r̥̄́">r̥̄́</button>
-                 <button type="button" data-char="à">à</button>
-                 <button type="button" data-char="ā̀">ā̀</button>
-
-                <button type="button"  data-char="r̥̄">r̥̄</button>
+                <button type="button" data-char="ṛ">ṛ</button>
+                <button type="button" data-char="ṝ">ṝ</button>
                 <button type="button" data-char="ḷ">ḷ</button>
                 <button type="button" data-char="ṃ">ṃ</button>
                 <button type="button" data-char="ḥ">ḥ</button>
                 <button type="button" data-char="ṅ">ṅ</button>
                 <button type="button" data-char="ñ">ñ</button>
-                 <!--ROW 5-->
                 <button type="button" data-char="ṭ">ṭ</button>
                 <button type="button" data-char="ḍ">ḍ</button>
                 <button type="button" data-char="ṇ">ṇ</button>
@@ -129,8 +113,7 @@
           <div class="type-input-group">
             <h6>Type</h6>
             <select id="attribute">
-              <option value="root">Root</option>
-              <option value="wordForm">Wordform</option>
+              <option value="root">Lemma</option>
             </select>
           </div>
         </div>
@@ -179,7 +162,6 @@
               <option value="Ipf">Imperfective</option>
               <option value="Plpf">Pluperfect</option>
               <option value="Pf">Perfect</option>
-              <option value="Cond">Conditional</option>
             </select>
           </div>
         </div>
@@ -199,7 +181,6 @@
               <option value="sjv">sjv</option>
               <option value="opt">opt</option>
               <option value="ipv">ipv</option>
-              <option value="inj">inj</option>
             </select>
           </div>
         </div>
@@ -257,7 +238,6 @@
                 <option value="mod">Modal</option>
                 <option value="hab">Habitual</option>
                 <option value="exp">Experiential</option>
-                <option value="rptv">Reportative</option>
                 <option value="term">Terminative</option>
                 <option value="gnom">Gnomic</option>
                 <option value="univ">Universal</option>
@@ -284,8 +264,6 @@
                 <option value="dir">Imperative</option>
                 <option value="prohib">Prohibitive</option>
                 <option value="directive">Directive</option>
-                <option value="funcsjv">Functional sjv</option>
-                <option value="funcopt">Functional opt</option>
               </select>
             </div>
           </div>
@@ -410,7 +388,8 @@
   </section>
 
 
-<script type="module" src="/src/script.js"></script>
+
+<script type="module" src="/src/fakescript.js"></script>
   <footer class="site-footer">
     <p class="cite-text">
       <strong> something here </strong> &lt;date of access&gt;.

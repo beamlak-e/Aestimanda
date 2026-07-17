@@ -1082,3 +1082,17 @@ input::placeholder {
   }
 
 }
+
+.logo-mark {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.nav-search-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex-shrink: 0;
+}

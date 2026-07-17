@@ -1178,6 +1178,10 @@ padding-left: 34px;
   border-color: #cfcfcf;
 }
 
+.gender-group{
+    display: none;
+}
+
 
 .logo-mark {
   width: 58px;
