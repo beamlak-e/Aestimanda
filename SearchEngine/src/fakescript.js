@@ -24,6 +24,7 @@ btn.addEventListener('click', function () {
 
 //creates empty array that we later store string from 
 let verbData = [];
+let lineData = [];
 
 // CHOICE JS --- Preverb
 document.addEventListener("DOMContentLoaded", () => {
@@ -188,8 +189,19 @@ document.getElementById('searchForm').addEventListener('submit', function (event
   const selectedTextual = getSelectedValues("textualSelect");
   const selectedFormal = getSelectedValues("formalSelect");
 
+  if (selectedAttribute === "line") {
+    if (searchTerm === "") {
+      displayLineResults([], searchTerm, true);
+      return;
+    }
 
+    const matchingLines = lineData.filter((line) => {
+      return line.id.toLowerCase() === searchTerm;
+    });
 
+    displayLineResults(matchingLines, searchTerm, false);
+    return;
+  }
   //// changes output to lowercase so values aren't filtered out 
   const matches = verbData.filter((verb) => {
     const matchesSearch =
@@ -221,20 +233,20 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         }
         return true;
       });
-     
-      const matchesFormal =
-            selectedFormal.length === 0 ||
-            selectedFormal.some((filter) => {
-                if (filter === "neg") {
-                    return verb.neg === "1";
-                }
 
-                if (filter === "aug") {
-                    return verb.aug === "1";
-                }
+    const matchesFormal =
+      selectedFormal.length === 0 ||
+      selectedFormal.some((filter) => {
+        if (filter === "neg") {
+          return verb.neg === "1";
+        }
 
-                return true;
-            });
+        if (filter === "aug") {
+          return verb.aug === "1";
+        }
+
+        return true;
+      });
 
 
     ///review these filters added 
@@ -328,15 +340,21 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     console.log(verb.pvv);
     console.log(verb.mod);
 
-    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual && matchesFormal ;
+    return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual && matchesFormal;
   });
 
   ///console logs 
   console.log("Matches:", matches);
   console.log("Selected Filters:", selectedFilters)
   console.log("Search term:", searchTerm);
+
   const groupedResults = groupWordForms(matches);
-  displayResults(groupedResults, searchTerm, selectedAttribute); ///now passing selectAttribute 
+
+  groupedResults.sort((a, b) => {
+    return b.count - a.count;
+  });
+
+  displayResults(groupedResults, searchTerm, selectedAttribute);
 });
 
 
@@ -353,6 +371,16 @@ async function testXML() {
     "application/xml"
   );
 
+  const padas = xmlDoc.querySelectorAll("Pada");
+  lineData = Array.from(padas).map((pada) => {
+    return {
+      id: pada.getAttribute("id") || "",
+      text: pada.textContent.trim()
+
+    };
+
+  });
+  console.log("Line data loaded:", lineData);
   const verbs = xmlDoc.querySelectorAll("Verb, Verbal");
   ///finds verb element in xml 
   verbData = [];
@@ -477,7 +505,49 @@ function clearMiniResults() {
   document.getElementById("usage").textContent = "";
   document.getElementById("adv").textContent = "";
 
+
 }
+
+function displayLineResults(lines, searchTerm, isEmptySearch) {
+  const wordFormList = document.getElementById("wordFormList");
+
+  wordFormList.innerHTML = "";
+  clearMiniResults();
+
+  document.getElementById("word").textContent =
+    searchTerm || "Line Search";
+
+  document.getElementById("thinnerword").textContent = "Line";
+  document.getElementById("glosshere").textContent = "";
+  document.getElementById("numberCount").textContent = "";
+
+  if (isEmptySearch) {
+    document.getElementById("resultCount").textContent = "";
+
+    const listItem = document.createElement("li");
+    listItem.textContent = "Please enter a line identifier.";
+    wordFormList.appendChild(listItem);
+    return;
+  }
+
+  document.getElementById("resultCount").textContent =
+    `Retrieved ${lines.length} line(s)`;
+
+  if (lines.length === 0) {
+    const listItem = document.createElement("li");
+    listItem.textContent = "No line found.";
+    wordFormList.appendChild(listItem);
+    return;
+  }
+
+  lines.forEach((line) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${line.id}: ${line.text}`;
+    listItem.classList.add("context-line");
+    wordFormList.appendChild(listItem);
+  });
+}
+
 
 // Displaying results on page 
 function displayResults(results, searchTerm, selectAttribute) {  ///pushes selectAttribute now (wordForm, root)
@@ -529,13 +599,13 @@ function displayResults(results, searchTerm, selectAttribute) {  ///pushes selec
 
 
   const numberCount = document.getElementById("numberCount");
-//  if (numberCount) {
-//    if (selectAttribute === "wordForm") {
-//      numberCount.textContent = `Count: ${results.length}`;
-//    } else {
-//      numberCount.textContent = `Count: ${results.length}`;
-//   }
-//  }
+  //  if (numberCount) {
+  //    if (selectAttribute === "wordForm") {
+  //      numberCount.textContent = `Count: ${results.length}`;
+  //    } else {
+  //      numberCount.textContent = `Count: ${results.length}`;
+  //   }
+  //  }
 
   //// will return no matches if no matches found 
   if (results.length === 0) {
@@ -573,7 +643,7 @@ function showOccurrencesForWordForm(wordForm) {
     return verb.wordForm === wordForm;
   });
   ////gets it again so basicallty results for seleccted filter-> word clicked (like normal)
-   document.getElementById("word").textContent = wordForm;
+  document.getElementById("word").textContent = wordForm;
   document.getElementById("thinnerword").textContent = wordForm;
   displayOccurrences(occurrences);
 }
@@ -652,23 +722,23 @@ function displayDetails(verb) {
 
   const noteText = document.getElementById("note");
   const noteRow = document.getElementById("noterow");
-     if (verb.note?.trim()) {
-      noteRow.style.display = "block";
-      document.getElementById("note").textContent = verb.note;
-    } else {
-      noteRow.style.display = "none";
-      noteText.textContent = ""; 
-    }
+  if (verb.note?.trim()) {
+    noteRow.style.display = "block";
+    document.getElementById("note").textContent = verb.note;
+  } else {
+    noteRow.style.display = "none";
+    noteText.textContent = "";
+  }
 
-   const adverbRow = document.getElementById("adverbrow");
-     if (verb.adv) {
-      adverbRow.style.display = "block";
-      document.getElementById("adv").textContent = verb.adv;
-    } else {
-      adverbRow.style.display = "none";
-    }
+  const adverbRow = document.getElementById("adverbrow");
+  if (verb.adv) {
+    adverbRow.style.display = "block";
+    document.getElementById("adv").textContent = verb.adv;
+  } else {
+    adverbRow.style.display = "none";
+  }
 
-  
+
 
 }
 
@@ -677,7 +747,7 @@ function displayOccurrences(occurrences) {
   wordFormList.innerHTML = "";
 
   const firstVerb = occurrences[0];
-  
+
 
   const glosshere = document.getElementById("glosshere");
   if (glosshere) {
@@ -688,7 +758,16 @@ function displayOccurrences(occurrences) {
   occurrences.forEach((verb) => {
     const listItem = document.createElement("li");
 
-    listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
+
+
+    const highlightedText = verb.padaText.replace(
+      verb.wordForm,
+      `<span class="highlight-word">${verb.wordForm}</span>`
+    );
+
+    listItem.innerHTML = `${verb.padaId}: ${highlightedText}`;
+
+    listItem.classList.add("context-line");
     listItem.classList.add("context-line");
 
     if (verb.altr?.trim()) {
@@ -708,7 +787,7 @@ function displayOccurrences(occurrences) {
 
 testXML();
 
-/* keyboard */ 
+/* keyboard */
 
 
 

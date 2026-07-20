@@ -23,114 +23,117 @@ btn.addEventListener('click', function () {
 
 //creates empty array that we later store string from 
 let verbData = [];
+let lineData = [];
 
 // CHOICE JS --- Preverb
-document.addEventListener("DOMContentLoaded", () => {
-    new Choices("#preverbSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select preverb(s)"
-    });
 
-    new Choices("#tenseSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select tense(s)"
-    });
-
-    new Choices("#timeSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select times(s)"
-    });
-
-    new Choices("#moodSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select mood(s)"
-    });
-
-    new Choices("#caseSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select case(s)"
-    });
-
-    new Choices("#voiceSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select voice(s)"
-    });
-
-    new Choices("#genderSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select voice(s)"
-    });
-
-    new Choices("#personSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select person(s)"
-    });
-
-    new Choices("#numberSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select number(s)"
-    });
-
-    new Choices("#formalSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select formal filter"
-    });
-
-    new Choices("#filterSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select filter"
-    });
-
-    new Choices("#modalSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select Modal(s)"
-    });
-
-    new Choices("#textualSelect", {
-        removeItemButton: true,
-        searchEnabled: true,
-        shouldSort: false,
-        itemSelectText: "",
-        placeholderValue: "Select Textual Reading Filter(s)"
-    });
-
+new Choices("#preverbSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select preverb(s)"
 });
+
+new Choices("#tenseSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select tense(s)"
+});
+
+new Choices("#timeSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select times(s)"
+});
+
+new Choices("#moodSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select mood(s)"
+});
+
+new Choices("#caseSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select case(s)"
+});
+
+new Choices("#voiceSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select voice(s)"
+});
+
+new Choices("#genderSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select voice(s)"
+});
+
+new Choices("#personSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select person(s)"
+});
+
+new Choices("#numberSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select number(s)"
+});
+
+new Choices("#formalSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select formal filter"
+});
+
+new Choices("#filterSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select filter"
+});
+
+new Choices("#modalSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select Modal(s)"
+});
+
+new Choices("#textualSelect", {
+    removeItemButton: true,
+    searchEnabled: true,
+    shouldSort: false,
+    itemSelectText: "",
+    placeholderValue: "Select Textual Reading Filter(s)"
+});
+requestAnimationFrame(() => {
+    document.documentElement.classList.remove("choices-loading");
+});
+
 
 document.getElementById('searchForm').addEventListener('reset', function (event) {
     document.getElementById("textincontext").textContent = "Text in Context";
@@ -187,7 +190,19 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     const selectedTextual = getSelectedValues("textualSelect");
     const selectedFormal = getSelectedValues("formalSelect");
 
+    if (selectedAttribute === "line") {
+        if (searchTerm === "") {
+            displayLineResults([], searchTerm, true);
+            return;
+        }
 
+        const matchingLines = lineData.filter((line) => {
+            return line.id.toLowerCase() === searchTerm;
+        });
+
+        displayLineResults(matchingLines, searchTerm, false);
+        return;
+    }
 
     //// changes output to lowercase so values aren't filtered out 
     const matches = verbData.filter((verb) => {
@@ -326,10 +341,16 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     console.log("Matches:", matches);
     console.log("Selected Filters:", selectedFilters)
     console.log("Search term:", searchTerm);
-    const groupedResults = groupWordForms(matches);
-    displayResults(groupedResults, searchTerm, selectedAttribute); ///now passing selectAttribute 
-});
 
+
+    const groupedResults = groupWordForms(matches);
+
+    groupedResults.sort((a, b) => {
+        return b.count - a.count;
+    });
+
+    displayResults(groupedResults, searchTerm, selectedAttribute);
+});
 
 // Load and process XML file 
 async function testXML() {
@@ -344,9 +365,22 @@ async function testXML() {
         "application/xml"
     );
 
+    const lines = xmlDoc.querySelectorAll("l");
+
+    lineData = Array.from(lines).map((line) => {
+        return {
+            id: line.getAttribute("n") || "",
+            text: line.textContent.trim()
+        };
+    });
+
+    console.log("Greek line data loaded:", lineData);
+
+
     const verbs = xmlDoc.querySelectorAll("Verb, Verbal");
     ///finds verb element in xml 
     verbData = [];
+
 
     ////takes that long string and gets the individual roots, gloss 
     verbs.forEach((verb) => {
@@ -474,6 +508,48 @@ function clearMiniResults() {
 
 }
 
+function displayLineResults(lines, searchTerm, isEmptySearch) {
+    const wordFormList = document.getElementById("wordFormList");
+
+    wordFormList.innerHTML = "";
+    clearMiniResults();
+
+    document.getElementById("word").textContent =
+        searchTerm || "Line Search";
+
+    document.getElementById("thinnerword").textContent = "Line";
+    document.getElementById("glosshere").textContent = "";
+    document.getElementById("numberCount").textContent = "";
+
+    if (isEmptySearch) {
+        document.getElementById("resultCount").textContent = "";
+
+        const listItem = document.createElement("li");
+        listItem.textContent = "Please enter a line number.";
+        wordFormList.appendChild(listItem);
+        return;
+    }
+
+    document.getElementById("resultCount").textContent =
+        `Retrieved ${lines.length} line(s)`;
+
+    if (lines.length === 0) {
+        const listItem = document.createElement("li");
+        listItem.textContent = "No line found.";
+        wordFormList.appendChild(listItem);
+        return;
+    }
+
+    lines.forEach((line) => {
+        const listItem = document.createElement("li");
+
+        listItem.textContent = `${line.id}: ${line.text}`;
+        listItem.classList.add("context-line");
+
+        wordFormList.appendChild(listItem);
+    });
+}
+
 // Displaying results on page 
 function displayResults(results, searchTerm, selectAttribute) {  ///pushes selectAttribute now (wordForm, root)
     const wordFormList = document.getElementById("wordFormList");
@@ -567,9 +643,9 @@ function showOccurrencesForWordForm(wordForm) {
     const occurrences = verbData.filter((verb) => {
         return verb.wordForm === wordForm;
     });
-////gets it again so basicallty results for seleccted filter-> word clicked (like normal)
- document.getElementById("word").textContent = wordForm;
-  document.getElementById("thinnerword").textContent = wordForm;
+    ////gets it again so basicallty results for seleccted filter-> word clicked (like normal)
+    document.getElementById("word").textContent = wordForm;
+    document.getElementById("thinnerword").textContent = wordForm;
     displayOccurrences(occurrences);
 }
 
@@ -683,7 +759,13 @@ function displayOccurrences(occurrences) {
     occurrences.forEach((verb) => {
         const listItem = document.createElement("li");
 
-        listItem.textContent = `${verb.padaId}: ${verb.padaText}`;
+        const highlightedText = verb.padaText.replace(
+            verb.wordForm,
+            `<span class="highlight-word">${verb.wordForm}</span>`
+        );
+
+        listItem.innerHTML = `${verb.padaId}: ${highlightedText}`;
+
         listItem.classList.add("context-line");
 
         if (verb.altr === "1") {
@@ -706,16 +788,17 @@ testXML();
 /* keyboard */
 
 
+/* Greek keyboard */
 
 const searchInput = document.getElementById("searchInput");
 const keyboardButton = document.getElementById("keyboardButton");
-const sanskritKeyboard = document.getElementById("sanskritKeyboard");
+const greekKeyboard = document.getElementById("greekKeyboard");
 
 keyboardButton.addEventListener("click", () => {
-    sanskritKeyboard.hidden = !sanskritKeyboard.hidden;
+    greekKeyboard.hidden = !greekKeyboard.hidden;
 });
 
-sanskritKeyboard.addEventListener("click", (event) => {
+greekKeyboard.addEventListener("click", (event) => {
     const key = event.target.closest("[data-char]");
 
     if (!key) {
@@ -723,8 +806,8 @@ sanskritKeyboard.addEventListener("click", (event) => {
     }
 
     const character = key.dataset.char;
-    const start = searchInput.selectionStart;
-    const end = searchInput.selectionEnd;
+    const start = searchInput.selectionStart ?? searchInput.value.length;
+    const end = searchInput.selectionEnd ?? searchInput.value.length;
 
     searchInput.value =
         searchInput.value.slice(0, start) +
@@ -734,5 +817,8 @@ sanskritKeyboard.addEventListener("click", (event) => {
     const newCursorPosition = start + character.length;
 
     searchInput.focus();
-    searchInput.setSelectionRange(newCursorPosition, newCursorPosition);
+    searchInput.setSelectionRange(
+        newCursorPosition,
+        newCursorPosition
+    );
 });

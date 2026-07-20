@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aestimanda</title>
 
@@ -12,39 +12,58 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
-
+  <link rel="stylesheet" href="/src/fakestyle.css">
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/src/fakestyle.css">
+
 
   <style>
-  .logo-mark {
-    width: 58px;
-    height: 58px;
-    object-fit: contain;
-  }
+    .logo-mark {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
 
-  .nav-bar svg {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-  }
+    .nav-bar svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
 
-  .site-header {
-    min-height: 120px;
-  }
-</style>
+    .site-header {
+      min-height: 120px;
+    }
+  </style>
+  <style>
+    html.choices-loading #preverbSelect,
+    html.choices-loading #tenseSelect,
+    html.choices-loading #timeSelect,
+    html.choices-loading #moodSelect,
+    html.choices-loading #voiceSelect,
+    html.choices-loading #caseSelect,
+    html.choices-loading #genderSelect,
+    html.choices-loading #personSelect,
+    html.choices-loading #numberSelect,
+    html.choices-loading #formalSelect,
+    html.choices-loading #filterSelect,
+    html.choices-loading #modalSelect,
+    html.choices-loading #textualSelect,
+    html.choices-loading .choices {
+      visibility: hidden !important;
+    }
+  </style>
+
 </head>
 
 <body id="top">
   <header class="site-header">
     <div class="header-inner">
       <div class="logo-group">
-        <img src="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png" alt="CorpusVista Logo" class="logo-mark"  width="58"
-  height="58">
+        <img src="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png" alt="CorpusVista Logo" class="logo-mark"
+          width="58" height="58">
 
         <div class="logo-text">
           <h1><a href="index.html"> Aestimanda</a>
@@ -58,8 +77,9 @@
           <button class="help-button">?</button>
 
           <div class="dropdown-menu2">
-            <a href="#">Report a Problem</a>
-            <a href="sanskrit.html">Contact Us</a>
+            <a href="https://forms.gle/W4vQawFFBfwE8c9Y8" target="_blank" rel="noopener noreferrer">Report a
+              Problem</a>
+            <a href="mailto:aestimanda@gmail.com">Contact Us</a>
           </div>
         </div>
       </div>
@@ -70,9 +90,8 @@
 
       <div class="nav-dropdown">
         <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22"
-      height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m21 21-4.34-4.34" />
             <circle cx="11" cy="11" r="8" />
           </svg>
@@ -108,7 +127,7 @@
               <button type="button" id="keyboardButton" title="Open Sanskrit keyboard">
                 ā
               </button>
-  <!--ṇṣ. ūtī́-->
+              <!--ṇṣ. ūtī́-->
               <div id="sanskritKeyboard" class="sanskrit-keyboard" hidden>
                 <!--ROW one -->
                 <button type="button" data-char="ā">ā</button>
@@ -117,25 +136,25 @@
                 <button type="button" data-char="ū">ū</button>
                 <button type="button" data-char="r̥">r̥</button>
                 <!--ROW 2-->
-                 <button type="button" data-char="á">á</button>
-                 <button type="button" data-char="ā́">ā́</button>
+                <button type="button" data-char="á">á</button>
+                <button type="button" data-char="ā́">ā́</button>
                 <button type="button" data-char="ã́">ã́</button>
-                 <button type="button" data-char="í">í</button>
-                 <button type="button" data-char="ī́">ī́</button>
-                 <!--ROW 3-->
-                 <button type="button" data-char="ú">ú</button>
-                 <button type="button" data-char="ū́">ū́</button>
-                 <button type="button" data-char="r̥̄́">r̥̄́</button>
-                 <button type="button" data-char="à">à</button>
-                 <button type="button" data-char="ā̀">ā̀</button>
+                <button type="button" data-char="í">í</button>
+                <button type="button" data-char="ī́">ī́</button>
+                <!--ROW 3-->
+                <button type="button" data-char="ú">ú</button>
+                <button type="button" data-char="ū́">ū́</button>
+                <button type="button" data-char="r̥̄́">r̥̄́</button>
+                <button type="button" data-char="à">à</button>
+                <button type="button" data-char="ā̀">ā̀</button>
 
-                <button type="button"  data-char="r̥̄">r̥̄</button>
+                <button type="button" data-char="r̥̄">r̥̄</button>
                 <button type="button" data-char="ḷ">ḷ</button>
                 <button type="button" data-char="ṃ">ṃ</button>
                 <button type="button" data-char="ḥ">ḥ</button>
                 <button type="button" data-char="ṅ">ṅ</button>
                 <button type="button" data-char="ñ">ñ</button>
-                 <!--ROW 5-->
+                <!--ROW 5-->
                 <button type="button" data-char="ṭ">ṭ</button>
                 <button type="button" data-char="ḍ">ḍ</button>
                 <button type="button" data-char="ṇ">ṇ</button>
@@ -150,6 +169,7 @@
             <select id="attribute">
               <option value="root">Root</option>
               <option value="wordForm">Wordform</option>
+              <option value="line">Line</option>
             </select>
           </div>
         </div>
@@ -429,18 +449,17 @@
   </section>
 
 
-<script type="module" src="/src/script.js"></script>
+  <script type="module" src="/src/script.js"></script>
   <footer class="site-footer">
-    <p class="cite-text">
-      <strong> something here </strong> &lt;date of access&gt;.
-    </p>
+    <p class="cite-text"> <strong> Suggested Citation </strong> Aestimanda: A Comparative Corpus of Verbal Usage in Homer and the Rig Veda. Washington </p>
+     <p class="cite-text"> University in St. Louis. Accessed &lt;date of access&gt;.</p>
     <div class="footer-links">
-      <a href="#">License</a>
-      <a href="#">Privacy policy</a>
+      <a href="License.html">License</a>
+      <a href="mailto:aestimanda@gmail.com">Contact</a>
     </div>
 
     <p class="footer-credit">
-      &copy; jk Inc. All rights reserved.
+      &copy; 2026 Aestimanda Project.
     </p>
 
     <a href="#top" class="back-to-top" aria-label="Back to top">
