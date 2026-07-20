@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aestimanda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/src/greek.css">
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .logo-mark {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .nav-bar svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .site-header {
+      min-height: 120px;
+    }
+  </style>
+  <style>
+    html.choices-loading #preverbSelect,
+    html.choices-loading #tenseSelect,
+    html.choices-loading #timeSelect,
+    html.choices-loading #moodSelect,
+    html.choices-loading #voiceSelect,
+    html.choices-loading #caseSelect,
+    html.choices-loading #genderSelect,
+    html.choices-loading #personSelect,
+    html.choices-loading #numberSelect,
+    html.choices-loading #formalSelect,
+    html.choices-loading #filterSelect,
+    html.choices-loading #modalSelect,
+    html.choices-loading #textualSelect,
+    html.choices-loading .choices {
+      visibility: hidden !important;
+    }
+  </style>
+
+</head>
+
+<body id="top">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-group">
+        <img src="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png" alt="CorpusVista Logo" class="logo-mark"
+          width="58" height="58">
+
+        <div class="logo-text">
+          <h1><a href="index.html"> Aestimanda</a>
+          </h1>
+          <p>A Comparative Corpus of Verbal Usage in Homer and the Rig Veda</p>
+        </div>
+      </div>
+
+      <div class="header-icons">
+        <div class="help-dropdown">
+          <button class="help-button">?</button>
+
+          <div class="dropdown-menu2">
+            <a href="https://forms.gle/W4vQawFFBfwE8c9Y8" target="_blank" rel="noopener noreferrer">Report a
+              Problem</a>
+            <a href="mailto:aestimanda@gmail.com">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <a href="index.html">ⓘ Project</a>
+
+      <div class="nav-dropdown">
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+          Search
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="greek.html">Greek</a>
+          <a href="updatedsanskrit.html">Sanskrit</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="page">
+
+    <h2>Search</h2>
+
+    <section class="content-card">
+      <h3>Search the Corpus</h3>
+
+      <p>
+        Enter a verb or wordform in Greek and optionally filter by morphological attributes.
+      </p>
+
+      <form id="searchForm">
+        <div class="search-top-row">
+          <div class="search-input-group">
+            <h6>Search</h6>
+
+            <div class="search-wrapper">
+              <input type="text" id="searchInput" placeholder="e.g. τίθημι, ἔθηκεν, προΐαψεν...">
+
+              <button type="button" id="keyboardButton" title="Open Greek keyboard">
+                α
+              </button>
+
+              <div id="greekKeyboard" class="greek-keyboard" hidden>
+                <button type="button" data-char="α">α</button>
+                <button type="button" data-char="β">β</button>
+                <button type="button" data-char="γ">γ</button>
+                <button type="button" data-char="δ">δ</button>
+                <button type="button" data-char="ε">ε</button>
+                <button type="button" data-char="ζ">ζ</button>
+                <button type="button" data-char="η">η</button>
+                <button type="button" data-char="θ">θ</button>
+                <button type="button" data-char="ι">ι</button>
+                <button type="button" data-char="κ">κ</button>
+                <button type="button" data-char="λ">λ</button>
+                <button type="button" data-char="μ">μ</button>
+                <button type="button" data-char="ν">ν</button>
+                <button type="button" data-char="ξ">ξ</button>
+                <button type="button" data-char="ο">ο</button>
+                <button type="button" data-char="π">π</button>
+                <button type="button" data-char="ρ">ρ</button>
+                <button type="button" data-char="σ">σ</button>
+                <button type="button" data-char="ς">ς</button>
+                <button type="button" data-char="τ">τ</button>
+                <button type="button" data-char="υ">υ</button>
+                <button type="button" data-char="φ">φ</button>
+                <button type="button" data-char="χ">χ</button>
+                <button type="button" data-char="ψ">ψ</button>
+                <button type="button" data-char="ω">ω</button>
+
+                <button type="button" data-char="ά">ά</button>
+                <button type="button" data-char="έ">έ</button>
+                <button type="button" data-char="ή">ή</button>
+                <button type="button" data-char="ί">ί</button>
+                <button type="button" data-char="ό">ό</button>
+                <button type="button" data-char="ύ">ύ</button>
+                <button type="button" data-char="ώ">ώ</button>
+
+                <button type="button" data-char="ὰ">ὰ</button>
+                <button type="button" data-char="ὲ">ὲ</button>
+                <button type="button" data-char="ὴ">ὴ</button>
+                <button type="button" data-char="ὶ">ὶ</button>
+                <button type="button" data-char="ὸ">ὸ</button>
+                <button type="button" data-char="ὺ">ὺ</button>
+                <button type="button" data-char="ὼ">ὼ</button>
+
+                <button type="button" data-char="ᾶ">ᾶ</button>
+                <button type="button" data-char="ῆ">ῆ</button>
+                <button type="button" data-char="ῖ">ῖ</button>
+                <button type="button" data-char="ῦ">ῦ</button>
+                <button type="button" data-char="ῶ">ῶ</button>
+
+                <button type="button" data-char="ἀ">ἀ</button>
+                <button type="button" data-char="ἁ">ἁ</button>
+                <button type="button" data-char="ἐ">ἐ</button>
+                <button type="button" data-char="ἑ">ἑ</button>
+                <button type="button" data-char="ἠ">ἠ</button>
+                <button type="button" data-char="ἡ">ἡ</button>
+                <button type="button" data-char="ἰ">ἰ</button>
+                <button type="button" data-char="ἱ">ἱ</button>
+                <button type="button" data-char="ὀ">ὀ</button>
+                <button type="button" data-char="ὁ">ὁ</button>
+                <button type="button" data-char="ὐ">ὐ</button>
+                <button type="button" data-char="ὑ">ὑ</button>
+                <button type="button" data-char="ὠ">ὠ</button>
+                <button type="button" data-char="ὡ">ὡ</button>
+
+                <button type="button" data-char="ἄ">ἄ</button>
+                <button type="button" data-char="ἅ">ἅ</button>
+                <button type="button" data-char="ἔ">ἔ</button>
+                <button type="button" data-char="ἕ">ἕ</button>
+                <button type="button" data-char="ἤ">ἤ</button>
+                <button type="button" data-char="ἥ">ἥ</button>
+                <button type="button" data-char="ἴ">ἴ</button>
+                <button type="button" data-char="ἵ">ἵ</button>
+                <button type="button" data-char="ὄ">ὄ</button>
+                <button type="button" data-char="ὅ">ὅ</button>
+                <button type="button" data-char="ὔ">ὔ</button>
+                <button type="button" data-char="ὕ">ὕ</button>
+                <button type="button" data-char="ὤ">ὤ</button>
+                <button type="button" data-char="ὥ">ὥ</button>
+
+                <button type="button" data-char="ἂ">ἂ</button>
+                <button type="button" data-char="ἃ">ἃ</button>
+                <button type="button" data-char="ἒ">ἒ</button>
+                <button type="button" data-char="ἓ">ἓ</button>
+                <button type="button" data-char="ἢ">ἢ</button>
+                <button type="button" data-char="ἣ">ἣ</button>
+                <button type="button" data-char="ἲ">ἲ</button>
+                <button type="button" data-char="ἳ">ἳ</button>
+                <button type="button" data-char="ὂ">ὂ</button>
+                <button type="button" data-char="ὃ">ὃ</button>
+                <button type="button" data-char="ὒ">ὒ</button>
+                <button type="button" data-char="ὓ">ὓ</button>
+                <button type="button" data-char="ὢ">ὢ</button>
+                <button type="button" data-char="ὣ">ὣ</button>
+
+                <button type="button" data-char="ἆ">ἆ</button>
+                <button type="button" data-char="ἇ">ἇ</button>
+                <button type="button" data-char="ἦ">ἦ</button>
+                <button type="button" data-char="ἧ">ἧ</button>
+                <button type="button" data-char="ἶ">ἶ</button>
+                <button type="button" data-char="ἷ">ἷ</button>
+                <button type="button" data-char="ὖ">ὖ</button>
+                <button type="button" data-char="ὗ">ὗ</button>
+                <button type="button" data-char="ὦ">ὦ</button>
+                <button type="button" data-char="ὧ">ὧ</button>
+
+                <button type="button" data-char="ᾳ">ᾳ</button>
+                <button type="button" data-char="ῃ">ῃ</button>
+                <button type="button" data-char="ῳ">ῳ</button>
+                <button type="button" data-char="ᾴ">ᾴ</button>
+                <button type="button" data-char="ῄ">ῄ</button>
+                <button type="button" data-char="ῴ">ῴ</button>
+                <button type="button" data-char="ᾷ">ᾷ</button>
+                <button type="button" data-char="ῇ">ῇ</button>
+                <button type="button" data-char="ῷ">ῷ</button>
+
+                <button type="button" data-char="ϊ">ϊ</button>
+                <button type="button" data-char="ϋ">ϋ</button>
+                <button type="button" data-char="ΐ">ΐ</button>
+                <button type="button" data-char="ΰ">ΰ</button>
+                <button type="button" data-char="ῥ">ῥ</button>
+                <button type="button" data-char="ῤ">ῤ</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="type-input-group">
+            <h6>Type</h6>
+            <select id="attribute">
+              <option value="root">Lemma</option>
+              <option value="line"> Line</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row1">
+          <div class="preverb-group">
+            <label for="preverbSelect">Preverb</label>
+            <select id="preverbSelect" multiple>
+              <option value="διά">διά</option>
+              <option value="εἰς/ἐς">εἰς/ἐς</option>
+              <option value="κατά">κατά</option>
+              <option value="μετά">μετά</option>
+              <option value="ξύν">ξύν</option>
+              <option value="παρά">παρά</option>
+              <option value="περί">περί</option>
+              <option value="ποτί">ποτί</option>
+              <option value="πρό">πρό</option>
+              <option value="πρός">πρός</option>
+              <option value="σύν">σύν</option>
+              <option value="ἀμφί">ἀμφί</option>
+              <option value="ἀνά">ἀνά</option>
+              <option value="ἀπό">ἀπό</option>
+              <option value="ἄνα">ἄνα</option>
+              <option value="ἅμα">ἅμα</option>
+              <option value="ἐκ">ἐκ</option>
+              <option value="ἐν">ἐν</option>
+              <option value="ἐξ">ἐξ</option>
+              <option value="ἐπί">ἐπί</option>
+              <option value="ὑπό">ὑπό</option>
+            </select>
+          </div>
+          <div class="tense-group">
+            <label for="tenseSelect">Tense</label>
+            <select id="tenseSelect" multiple>
+              <option value="Aor">Aor</option>
+              <option value="Pres">Present</option>
+              <option value="Ipf">Imperfective</option>
+              <option value="Plpf">Pluperfect</option>
+              <option value="Pf">Perfect</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row1">
+          <div class="time-group">
+            <label for="timeSelect">Time</label>
+            <select id="timeSelect" multiple>
+              <option value="past">Past</option>
+              <option value="present">Present</option>
+              <option value="future">Future</option>
+            </select>
+          </div>
+          <div class="mood-group">
+            <label for="moodSelect">Mood</label>
+            <select id="moodSelect" multiple>
+              <option value="ind">Ind</option>
+              <option value="sjv">sjv</option>
+              <option value="opt">opt</option>
+              <option value="ipv">ipv</option>
+            </select>
+          </div>
+        </div>
+
+        <section class="expanded-card">
+          <h4>Advanced Filters</h4>
+          <div class="row1">
+            <div class="voice-group">
+              <label for="voiceSelect">Voice</label>
+              <select id="voiceSelect" multiple>
+                <option value="act">act</option>
+                <option value="mid">mid</option>
+                <option value="psv">psv</option>
+              </select>
+            </div>
+            <div class="case-group">
+              <label for="caseSelect">Case</label>
+              <select id="caseSelect" multiple>
+                <option value="nom">nom</option>
+                <option value="gen">gen</option>
+                <option value="dat">dat</option>
+                <option value="acc">acc</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="row1">
+            <div class="gender-group">
+              <label for="genderSelect">Gender</label>
+              <select id="genderSelect" multiple>
+                <option value="m">Masculine</option>
+                <option value="f">Feminine</option>
+                <option value="n">Neutral</option>
+              </select>
+            </div>
+              <div class="person-group">
+                <label for="personSelect">Person</label>
+                <select id="personSelect" multiple>
+                  <option value="1">1st</option>
+                  <option value="2">2nd</option>
+                  <option value="3">3rd</option>
+                </select>
+              </div>
+              </div>
+
+              <div class="row1">
+              <div class="number-group">
+                <label for="numberSelect">Number</label>
+                <select id="numberSelect" multiple>
+                  <option value="sg">Singular</option>
+                  <option value="pl">Plural</option>
+                  <option value="du">Dual</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="filterSelect">Function Filters</label>
+                <select id="filterSelect" multiple>
+                  <option value="mod">Modal</option>
+                  <option value="hab">Habitual</option>
+                  <option value="exp">Experiential</option>
+                  <option value="term">Terminative</option>
+                  <option value="gnom">Gnomic</option>
+                  <option value="univ">Universal</option>
+                  <option value="ipfv">Imperfective</option>
+                  <option value="rsltv">Resulative</option>
+                </select>
+              </div>
+              </div>
+            <div class="row1">
+              <div class="formal-group">
+                <label for="formalSelect">Negation Filters</label>
+                <select id="formalSelect">
+                  <option value="">All Filters</option>
+                  <option value="neg">Negated</option>
+                  <option value="aug">Augmented</option>
+                </select>
+              </div>
+              <div class="modal-group">
+                <label for="modalSelect">Modal Filters</label>
+                <select id="modalSelect" multiple>
+                  <option value="">All Filters</option>
+                  <option value="mod">Modal</option>
+                  <option value="nonmod">Non-Modal</option>
+                  <option value="dir">Imperative</option>
+                  <option value="prohib">Prohibitive</option>
+                  <option value="directive">Directive</option>
+                </select>
+              </div>
+            </div>
+            <div class="row1">
+              <div class="textualReadings">
+                <label for="textualSelect">Textual Readings</label>
+                <select id="textualSelect">
+                  <option value="dub">Secure Readings</option>
+                  <option value="altr">No Alternative Readings</option>
+                </select>
+              </div>
+            </div>
+        </section>
+      </form>
+
+      <div class="expandable-section">
+        <button class="expand-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="55" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+
+        <button class="collapse-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+  <div id="bttnrow">
+    <div id="bttncontainer">
+      <!-- From Uiverse.io by andrew-demchenk0 -->
+      <button type="submit" class="sbutton" form="searchForm" id="submitButton">
+        <span class="button__text">Search</span>
+        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-search-icon lucide-search">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg></span>
+      </button>
+
+    </div>
+
+    <div id="reset-container">
+      <button type="reset" class="rbutton" form="searchForm" id="resetButton">
+        <span class="button__text">Clear</span>
+
+        <span class="button__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="M6 6 18 18"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+  </div>
+
+  <section class="page">
+    <div id="Textandcount">
+      <p id="resultCount"></p>
+      <p id="numberCount"></p>
+    </div>
+  </section>
+  <section class="page2">
+    <div id="ResultsandMiniresults">
+      <div id="Results">
+        <p id="word">Result</p>
+        <p id="thinnerword">wordform</p>
+        <p id="glosshere"></p>
+        <div class="line"></div>
+        <ul id="wordFormList">No searches yet
+        </ul>
+      </div>
+
+      <div id="Miniresults">
+        <p id="textincontext"> Text in Context</p>
+        <div id="preverbrow">
+          <h6> Preverb:</h6>
+          <p id="preverbdisplay"></p>
+        </div>
+        <div id="translationrow">
+          <h6> Translation:</h6>
+          <p id="translation"></p>
+        </div>
+        <div id="adverbrow">
+          <h6> Adverb:</h6>
+          <p id="adv"></p>
+        </div>
+        <div id="noterow">
+          <h6> Note:</h6>
+          <p id="note"></p>
+        </div>
+        <div id="tenserow">
+          <p id="tense"></p>
+        </div>
+        <div id="moodrow">
+          <p id="mood"></p>
+        </div>
+        <div id="caserow">
+          <p id="case"></p>
+        </div>
+        <div id="genderrow">
+          <p id="gender"></p>
+        </div>
+        <div id="numberrow">
+          <p id="number"></p>
+        </div>
+        <div id="personrow">
+          <p id="person"></p>
+        </div>
+        <div id="usagerow">
+          <p id="usage"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script type="module" src="/src/greek.js"></script>
+  <footer class="site-footer">
+    <p class="cite-text"> <strong> Suggested Citation </strong> Aestimanda: A Comparative Corpus of Verbal Usage in
+      Homer and the Rig Veda. Washington </p>
+    <p class="cite-text"> University in St. Louis. Accessed &lt;date of access&gt;.</p>
+    <div class="footer-links">
+      <a href="License.html">License</a>
+      <a href="mailto:aestimanda@gmail.com">Contact</a>
+    </div>
+
+    <p class="footer-credit">
+      &copy; 2026 Aestimanda Project.
+    </p>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">
+      <!-- From Uiverse.io by vinodjangid07 -->
+      <button class="button">
+        <svg class="svgIcon" viewBox="0 0 384 512">
+          <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+          </path>
+        </svg>
+      </button>
+    </a>
+  </footer>
+  <script type="module" src="/src/greek.js"></script>
+</body>
+
+</html>

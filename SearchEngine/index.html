@@ -3,117 +3,90 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vite-project</title>
-
+  <title>Aestimanda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
-
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/style2.css">
+
+  <style>
+    .logo-mark {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .nav-bar svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .site-header {
+      min-height: 120px;
+    }
+  </style>
+
 </head>
 
 <body id="top">
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo-group">
-      <img
-        src="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png"
-        alt="CorpusVista Logo"
-        class="logo-mark"
-      >
-
-      <div class="logo-text">
-          <h1><a href="index.html"> Aestimanda</a>
-          </h1>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-group"> <img src="./src/assets/img/2FD4CF9B-D66A-4282-AF70-3EF6B61E4B40.png"
+          alt="CorpusVista Logo" class="logo-mark">
+        <div class="logo-text">
+          <h1><a href="index.html"> Aestimanda</a> </h1>
           <p>A Comparative Corpus of Verbal Usage in Homer and the Rig Veda</p>
         </div>
-    </div>
-
-    <div class="header-icons">
-      <div class="help-dropdown">
-        <button class="help-button">?</button>
-
-        <div class="dropdown-menu2">
-          <a href="#">Report a Problem</a>
-          <a href="sanskrit.html">Contact Us</a>
+      </div>
+      <div class="header-icons">
+        <div class="help-dropdown"> <button class="help-button">?</button>
+          <div class="dropdown-menu2"> <a href="https://forms.gle/W4vQawFFBfwE8c9Y8" target="_blank"
+              rel="noopener noreferrer">Report a Problem</a> <a href="mailto:aestimanda@gmail.com">Contact Us</a> </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <nav class="nav-bar">
-    <a href="#">ⓘ Project</a>
-
-    <div class="nav-dropdown">
-      <a href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="m21 21-4.34-4.34"/>
-          <circle cx="11" cy="11" r="8"/>
-        </svg>
-        Search
-      </a>
-
-      <div class="dropdown-menu">
-        <a href="#">Greek</a>
-        <a href="updatedsanskrit.html">Sanskrit</a>
+    <nav class="nav-bar"> <a href="#">ⓘ Project</a>
+      <div class="nav-dropdown"> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg> Search </a>
+        <div class="dropdown-menu"> <a href="greek.html">Greek</a> <a href="updatedsanskrit.html">Sanskrit</a> </div>
       </div>
-    </div>
-  </nav>
-</header>
-
+    </nav>
+  </header>
   <main class="page">
-    <h2>Welcome to CorpusVista</h2>
-
+    <h2>Welcome to Aestimanda</h2>
     <section class="content-card">
       <h3>About</h3>
-
-      <p>
-        CorpusVista is an open-access, web-based research environment for exploring
-        Greek and Sanskrit verb forms. The platform provides searchable corpus data
-        and linguistic annotations for students and researchers.
-      </p>
-
-      <p>
-        Users can search by root, word form, or grammatical features and view
-        occurrences in context.
-      </p>
+      <p> Aestimanda is an open-access, web-based research environment for exploring Greek and Sanskrit verb forms. The
+        platform provides searchable corpus data and linguistic annotations for students and researchers. </p>
+      <p> Users can search by root, word form, or grammatical features and view occurrences in context. </p>
     </section>
   </main>
   <script type="module" src="/src/script.js"></script>
   <footer class="site-footer">
- <p class="cite-text">
-    <strong> something here </strong> &lt;date of access&gt;.
-  </p>
-  <div class="footer-links">
-    <a href="#">License</a>
-    <a href="#">Privacy policy</a>
-  </div>
-
-  <p class="footer-credit">
-    &copy; jk Inc. All rights reserved.
-  </p>
-
-  <a href="#top" class="back-to-top" aria-label="Back to top">
-  <!-- From Uiverse.io by vinodjangid07 -->
-<button class="button">
-  <svg class="svgIcon" viewBox="0 0 384 512">
-    <path
-      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
-    ></path>
-  </svg>
-</button>
-</a>
-</footer>
+    <p class="cite-text"> <strong> Suggested Citation </strong> Aestimanda: A Comparative Corpus of Verbal Usage in Homer and the Rig Veda. Washington </p>
+     <p class="cite-text"> University in St. Louis. Accessed &lt;date of access&gt;.</p>
+    <div class="footer-links"> <a href="License.html">License</a> <a href="mailto:aestimanda@gmail.com"> Contact </a> </div>
+    <p class="footer-credit"> &copy; 2026 Aestimanda Project. </p> <a href="#top" class="back-to-top"
+      aria-label="Back to top"> <!-- From Uiverse.io by vinodjangid07 --> <button class="button"> <svg class="svgIcon"
+          viewBox="0 0 384 512">
+          <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+          </path>
+        </svg> </button> </a>
+  </footer>
 </body>
 
 </html>

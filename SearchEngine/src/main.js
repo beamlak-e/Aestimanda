@@ -4,7 +4,6 @@ import './style.css';
 let verbData = [];
 
 // CHOICE JS --- Preverb
-document.addEventListener("DOMContentLoaded", () => {
   new Choices("#preverbSelect", {
     removeItemButton: true,
     searchEnabled: true,
@@ -100,8 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
     itemSelectText: "",
     placeholderValue: "Select Modal(s)"
   });
-
+  requestAnimationFrame(() => {
+  document.documentElement.classList.remove("choices-loading");
 });
+
+
 
 document.getElementById('searchForm').addEventListener('reset', function (event) {
   document.getElementById("textincontext").textContent = "Text in Context";

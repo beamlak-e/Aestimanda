@@ -1109,42 +1109,43 @@ padding-left: 34px;
 /* keyboard yeha */ 
 
 .search-wrapper {
-    position: relative;
+  position: relative;
 }
 
 #searchInput {
-    width: 100%;
-    padding-right: 50px;
-      font-family: "Noto Sans", sans-serif;
+  width: 100%;
+  padding-right: 50px;
 }
 
 #keyboardButton {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
 
-    background: transparent;
-    border: none;
-    cursor: pointer;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 
-    color: #777;
-    font-size: 18px;
-    font-family: "Noto Sans", sans-serif;
+  color: #777;
+  font-size: 18px;
 }
 
-
-#sanskritKeyboard {
+#greekKeyboard {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
+  left: 0;
   z-index: 100;
 
-  width: 320px;
+  width: 520px;
+  max-width: 100%;
+  max-height: 360px;
+  overflow-y: auto;
+
   padding: 12px;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   gap: 8px;
 
   background: #ffffff;
@@ -1153,11 +1154,11 @@ padding-left: 34px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
 }
 
-#sanskritKeyboard[hidden] {
+#greekKeyboard[hidden] {
   display: none;
 }
 
-#sanskritKeyboard button {
+#greekKeyboard button {
   min-height: 38px;
   padding: 6px;
 
@@ -1166,16 +1167,26 @@ padding-left: 34px;
   border-radius: 4px;
 
   color: #444;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 17px;
+  font-family: "Noto Sans", "Open Sans", sans-serif;
+  font-size: 18px;
   font-weight: 400;
 
   cursor: pointer;
 }
 
-#sanskritKeyboard button:hover {
+#greekKeyboard button:hover {
   background: #eeeeee;
   border-color: #cfcfcf;
+}
+
+@media (max-width: 700px) {
+  #greekKeyboard {
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+  }
+}
+.gender-group{
+    display: none;
 }
 
 
@@ -1183,13 +1194,6 @@ padding-left: 34px;
   width: 58px;
   height: 58px;
   object-fit: contain;
-  flex-shrink: 0;
-}
-
-.nav-search-icon {
-  width: 20px;
-  height: 20px;
-  display: block;
   flex-shrink: 0;
 }
 

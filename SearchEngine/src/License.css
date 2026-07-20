@@ -405,11 +405,35 @@ body {
 }
 
 .line {
-  width: 100%;
+  width: 100%;  /* Originally 890 :) */
   /* Set exact width in pixels, percentage (e.g., 50%), or rem */
   /* Control thickness and look here */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
   margin: 20px auto;
   /* "auto" centers the line horizontally */
+}
+
+#license2,#license3, #license4{
+
+  padding-top: 20px;
+
+
+}
+
+#Thirdsof li{
+    margin-left: 24px;
+}
+
+#Thirdsof h4{
+    padding-bottom: 7px;
+    font-weight: 800;
+}
+
+#Thirdui li{
+    margin-left: 24px;
+}
+
+#Thirdui h4{
+    padding-bottom: 7px;
+    font-weight: 800;
 }
