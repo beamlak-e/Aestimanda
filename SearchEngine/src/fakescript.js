@@ -124,6 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
     placeholderValue: "Select Modal(s)"
   });
 
+  new Choices("#attribute", {
+    searchEnabled: false,
+    shouldSort: false,
+    itemSelectText: ""
+});
+
   new Choices("#textualSelect", {
     removeItemButton: true,
     searchEnabled: true,
