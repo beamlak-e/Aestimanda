@@ -75,13 +75,7 @@ new Choices("#voiceSelect", {
     placeholderValue: "Select voice(s)"
 });
 
-new Choices("#genderSelect", {
-    removeItemButton: true,
-    searchEnabled: true,
-    shouldSort: false,
-    itemSelectText: "",
-    placeholderValue: "Select voice(s)"
-});
+
 
 new Choices("#personSelect", {
     removeItemButton: true,
@@ -142,7 +136,7 @@ document.getElementById('searchForm').addEventListener('reset', function (event)
     document.getElementById("tense").textContent = "";
     document.getElementById("mood").textContent = "";
     document.getElementById("case").textContent = "";
-    document.getElementById("gender").textContent = "";
+    ///document.getElementById("gender").textContent = "";
     document.getElementById("number").textContent = "";
     document.getElementById("person").textContent = "";
     document.getElementById("usage").textContent = "";
@@ -182,7 +176,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     const selectedMood = getSelectedValues("moodSelect");
     const selectedVoice = getSelectedValues("voiceSelect");
     const selectedCasee = getSelectedValues("caseSelect");
-    const selectedGender = getSelectedValues("genderSelect");
+   /// const selectedGender = getSelectedValues("genderSelect");
     const selectedPerson = getSelectedValues("personSelect");
     const selectedNumber = getSelectedValues("numberSelect");
     const selectedFilters = getSelectedValues("filterSelect");
@@ -297,10 +291,10 @@ document.getElementById('searchForm').addEventListener('submit', function (event
                 return verb.parse?.includes(casee);
             });
 
-        const matchesGender =
-            selectedGender.length === 0 || selectedGender.some((gender) => {
-                return verb.parse?.includes(gender);
-            });
+       // const matchesGender =
+       //     selectedGender.length === 0 || selectedGender.some((gender) => {
+        //        return verb.parse?.includes(gender);
+        //    });
 
         const matchesNumber =
             selectedNumber.length === 0 || selectedNumber.some((number) => {
@@ -334,7 +328,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         console.log(verb.pvv);
         console.log(verb.mod);
 
-        return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesGender && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual && matchesFormal;
+        return matchesFilters && matchesVoice && matchesMood && matchesCasee && matchesNumber && matchesPerson && matchesTensev && matchesUsage && matchesPvv && matchesSearch && matchesModal && matchesTextual && matchesFormal;
     });
 
     ///console logs 
@@ -415,7 +409,7 @@ async function testXML() {
         const mood = verb.getAttribute("mood");
         const voice = verb.getAttribute("voice");
         const casee = verb.getAttribute("case");
-        const gender = verb.getAttribute("gender");
+      ////  const gender = verb.getAttribute("gender");
         const number = verb.getAttribute("number");
         const person = verb.getAttribute("person");
         const dir = verb.getAttribute("dir");
@@ -455,7 +449,7 @@ async function testXML() {
             mood,
             voice,
             casee,
-            gender,
+            ///gender,
             number,
             person,
             mod,
@@ -500,7 +494,7 @@ function clearMiniResults() {
     document.getElementById("tense").textContent = "";
     document.getElementById("mood").textContent = "";
     document.getElementById("case").textContent = "";
-    document.getElementById("gender").textContent = "";
+   /// document.getElementById("gender").textContent = "";
     document.getElementById("number").textContent = "";
     document.getElementById("person").textContent = "";
     document.getElementById("usage").textContent = "";
@@ -697,11 +691,11 @@ function displayDetails(verb) {
                     parse.includes("acc") ? "Accusative" :
                         "";
 
-    document.getElementById("gender").textContent =
-        parse.includes(".m.") ? "Masculine" :
-            parse.includes(".f.") ? "Feminine" :
-                parse.includes(".n.") ? "Neuter" :
-                    "";
+   //document.getElementById("gender").textContent =
+    //    parse.includes(".m.") ? "Masculine" :
+     //       parse.includes(".f.") ? "Feminine" :
+     //           parse.includes(".n.") ? "Neuter" :
+      ///              "";
 
     document.getElementById("number").textContent =
         parse.includes("sg") ? "Singular" :
@@ -717,7 +711,7 @@ function displayDetails(verb) {
 
     console.log(verb.trans);
     console.log(number);
-    console.log(gender);
+  //  console.log(gender);
     console.log(verb.tense);
 
 
