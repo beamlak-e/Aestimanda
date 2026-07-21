@@ -1197,3 +1197,23 @@ padding-left: 34px;
     color: #b94343;
     font-weight: 700;
 }
+
+.type-input-group .choices {
+  width: 100% !important;
+  margin-bottom: 0;
+}
+
+.type-input-group .choices__inner {
+  min-height: 42px !important;
+  padding: 7px 12px !important;
+  display: flex;
+  align-items: center;
+}
+
+.type-input-group .choices__list--single {
+  padding: 0 !important;
+}
+
+.type-input-group .choices[data-type*="select-one"]::after {
+  margin-top: -3px;
+}
