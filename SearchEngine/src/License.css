@@ -420,6 +420,13 @@ body {
 
 }
 
+#license7{
+
+  padding-top: 20px;
+
+
+}
+
 #Thirdsof li{
     margin-left: 24px;
 }
@@ -434,6 +441,20 @@ body {
 }
 
 #Thirdui h4{
+    padding-bottom: 7px;
+    font-weight: 800;
+}
+
+#Sourceof li{
+    margin-left: 24px;
+}
+
+#Sourceof h4{
+    padding-bottom: 7px;
+    font-weight: 800;
+}
+
+#Sourceof h4{
     padding-bottom: 7px;
     font-weight: 800;
 }
