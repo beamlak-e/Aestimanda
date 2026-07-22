@@ -73,5 +73,7 @@ See `License.html` for licensing information and acknowledgements.
 
 # Acknowledgements
 
-Developed during the HDW Undergraduate Fellowship at Washington University in St. Louis.
+This project was developed during the HDW Undergraduate Research Fellowship at Washington University in St. Louis.
 
+- **Research project, corpus preparation, and linguistic annotations:** Professor Ian Hollenbaugh
+- **Web application design and implementation:** Beamlak Eskender
