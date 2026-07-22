@@ -64,15 +64,14 @@ npm run dev
 
 or open it using a Live Server extension if appropriate for your setup.
 ---
-# Development Note (Vite)
+# Repository Structure
 
-If you're running this project with Vite:
+This repository is configured for the production deployment environment.
 
-- Use `/RV2.xml` (and other assets) instead of `/public/RV2.xml`.
-- Keep `import "./greek.css";` in the JavaScript if you want Vite to bundle the stylesheet.
+- Static assets are referenced using `/public/...` paths.
+- Stylesheets are loaded directly through the HTML rather than imported into JavaScript.
 
-The version in this repository is configured for the current deployment environment, which uses `/public/...` asset paths and loads CSS through the HTML instead.
-
+If using a different development environment (such as Vite), you may need to adjust asset paths and CSS imports accordingly.
 # License
 
 See `License.html` for licensing information and acknowledgements.
