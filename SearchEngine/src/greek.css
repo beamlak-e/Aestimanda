@@ -1222,3 +1222,45 @@ padding-left: 34px;
 .type-input-group .choices[data-type*="select-one"]::after {
   margin-top: -3px;
 }
+
+
+
+#Miniresults {
+  background-color: #fff;
+  width: 380px;
+  min-width: 360px;
+  height: auto;
+  align-self: flex-start;
+
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left: 7px solid rgba(185, 67, 67, 0.634);
+  padding: 34px 38px;
+}
+
+#Miniresults h6,
+#Miniresults p {
+  margin: 0;
+}
+
+#textincontext {
+  margin-bottom: 12px;
+}
+
+#preverbrow,
+#translationrow,
+#adverbrow,
+#noterow {
+  margin-bottom: 18px;
+}
+
+#preverbrow h6,
+#translationrow h6,
+#adverbrow h6,
+#noterow h6 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #161616c9;
+  margin: 0;
+  padding-bottom: 8px;
+}

@@ -1,8 +1,8 @@
-import './style.css';
+
 
 //creates empty array that we later store string from 
 let verbData = [];
-
+//un
 // CHOICE JS --- Preverb
   new Choices("#preverbSelect", {
     removeItemButton: true,
@@ -274,7 +274,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
 // Load and process XML file 
 async function testXML() {
-  const response = await fetch("/RV2.xml"); ////fetches rv2 file 
+  const response = await fetch("/public/RV2.xml"); ////fetches rv2 file 
   const xmlText = await response.text();
 
   ////Converts raw data into readable files for the system 
