@@ -64,6 +64,14 @@ npm run dev
 
 or open it using a Live Server extension if appropriate for your setup.
 ---
+# Development Note (Vite)
+
+If you're running this project with Vite:
+
+- Use `/RV2.xml` (and other assets) instead of `/public/RV2.xml`.
+- Keep `import "./greek.css";` in the JavaScript if you want Vite to bundle the stylesheet.
+
+The version in this repository is configured for the current deployment environment, which uses `/public/...` asset paths and loads CSS through the HTML instead.
 
 # License
 
