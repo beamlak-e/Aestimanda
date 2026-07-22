@@ -355,7 +355,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
 // Load and process XML file 
 async function testXML() {
-    const response = await fetch("/iliad_1.xml"); ////fetches rv2 file 
+    const response = await fetch("/iliad_1v2.xml"); ////fetches rv2 file 
     const xmlText = await response.text();
 
     ////Converts raw data into readable files for the system 

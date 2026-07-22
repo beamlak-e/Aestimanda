@@ -405,11 +405,31 @@ body {
 }
 
 .line {
-  width: 100%;
+  width: 100%;  /* Originally 890 :) */
   /* Set exact width in pixels, percentage (e.g., 50%), or rem */
   /* Control thickness and look here */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
   margin: 20px auto;
   /* "auto" centers the line horizontally */
+}
+
+#coverage li{
+    font-family: "Open Sans", Arial, sans-serif;
+   color: #555;
+   font-weight: 300;
+   font-size: 18px;
+   margin-left: 48px;
+   padding-bottom: 7px;
+
+
+}
+
+
+#coverage h4{
+    padding-bottom: 7px;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: "Open Sans", Arial, sans-serif;
+   color: #555;
+   padding-top: 5px;
 }
