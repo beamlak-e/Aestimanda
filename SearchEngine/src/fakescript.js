@@ -1,8 +1,5 @@
-import './fakestyle.css';
 
-
-
-////expand-button
+///expand-button
 const btn = document.querySelector('.expand-button');
 const expandedCard = document.querySelector('.expanded-card');
 const collapseBtn = document.querySelector('.collapse-button');
@@ -366,7 +363,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 
 // Load and process XML file 
 async function testXML() {
-  const response = await fetch("/RV2.xml"); ////fetches rv2 file 
+  const response = await fetch("/public/RV2.xml"); ////fetches rv2 file 
   const xmlText = await response.text();
 
   ////Converts raw data into readable files for the system 
@@ -393,9 +390,11 @@ async function testXML() {
 
   ////takes that long string and gets the individual roots, gloss 
   verbs.forEach((verb) => {
+
     const wordForm = verb.textContent.trim();
     const root = verb.getAttribute("root");
     const gloss = verb.getAttribute("gloss");
+
     ////storing filter attributes 
     const hab = verb.getAttribute("hab");
     const exp = verb.getAttribute("exp");
@@ -510,7 +509,9 @@ function clearMiniResults() {
   document.getElementById("person").textContent = "";
   document.getElementById("usage").textContent = "";
   document.getElementById("adv").textContent = "";
-
+  document.getElementById("note").textContent = ""; 
+  document.getElementById("adverbrow").style.display = "none";
+document.getElementById("noterow").style.display = "none";
 
 }
 

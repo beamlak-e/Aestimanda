@@ -1,6 +1,3 @@
-import './greek.css';
-
-
 ////expand-button
 const btn = document.querySelector('.expand-button');
 const expandedCard = document.querySelector('.expanded-card');
@@ -156,6 +153,9 @@ document.getElementById('searchForm').addEventListener('reset', function (event)
     document.getElementById("resultCount").textContent = "";
     document.getElementById("numberCount").textContent = "";
     document.getElementById("note").textContent = "";
+  document.getElementById("adverbrow").style.display = "none";
+document.getElementById("noterow").style.display = "none";
+
 
 
 
