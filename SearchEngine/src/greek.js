@@ -590,22 +590,22 @@ function displayResults(results, searchTerm, selectAttribute) {  ///pushes selec
     }
 
 
-    const resultCount = document.getElementById("resultCount");
-    if (resultCount) {
-        if (selectAttribute === "wordForm") {
-            resultCount.textContent = `Retrieved word form represented by ${results.length} result(s)`;
-        } else {
-            resultCount.textContent = `Retrieved lementa represented by ${results.length} result(s)`;
-        }
-    }
+//    const resultCount = document.getElementById("resultCount");
+//    if (resultCount) {
+//        if (selectAttribute === "wordForm") {
+//            resultCount.textContent = `Retrieved word form represented by ${results.length} result(s)`;
+//        } else {
+//            resultCount.textContent = `Retrieved lemmata represented by ${results.length} result(s)`;
+//        }
+//    }
 
 
     const numberCount = document.getElementById("numberCount");
     if (numberCount) {
         if (selectAttribute === "wordForm") {
-            numberCount.textContent = `Count: ${results.length}`;
+            numberCount.textContent = `Wordform count: ${results.length}`;
         } else {
-            numberCount.textContent = `Count: ${results.length}`;
+            numberCount.textContent = `Lemma Count: ${results.length}`;
         }
     }
 
