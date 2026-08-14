@@ -723,6 +723,12 @@ function displayDetails(verb) {
                 parse.includes("opt") ? "Optative" :
                     parse.includes("ipv") ? "Imperative" :
                         "";
+    
+    document.getElementById("voice").textContent =
+        parse.includes("act") ? "Active" :
+            parse.includes("mid") ? "Middle" :
+                parse.includes("psv") ? "Subjunctive" :
+                    "";
 
     console.log(verb.trans);
     console.log(number);
