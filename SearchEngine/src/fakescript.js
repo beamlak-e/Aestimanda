@@ -729,10 +729,11 @@ function displayDetails(verb) {
         parse.includes("du") ? "Dual" :
           "";
 
+  //Made cardinal, not ordinal. If still not working check further -08/14/2026
   document.getElementById("person").textContent =
-    parse.includes("1st") ? "1st Person" :
-      parse.includes("2nd") ? "2nd Person" :
-        parse.includes("3rd") ? "3rd Person" :
+    parse.includes("1") ? "1st Person" :
+      parse.includes("2") ? "2nd Person" :
+        parse.includes("3") ? "3rd Person" :
           "";
 
   console.log(verb.trans);
