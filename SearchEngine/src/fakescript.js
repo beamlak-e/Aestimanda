@@ -596,23 +596,23 @@ function displayResults(results, searchTerm, selectAttribute) {  ///pushes selec
 
 
   const resultCount = document.getElementById("resultCount");
-  if (resultCount) {
-    if (selectAttribute === "wordForm") {
-      resultCount.textContent = `Retrieved word form represented by ${results.length} result(s)`;
-    } else {
-      resultCount.textContent = `Retrieved ${results.length} occurrences`;
-    }
-  }
+//  if (resultCount) {
+//    if (selectAttribute === "wordForm") {
+//      resultCount.textContent = `Retrieved word form represented by ${results.length} result(s)`;
+//    } else {
+//      resultCount.textContent = `Retrieved ${results.length} occurrences`;
+//    }
+//  }
 
 
   const numberCount = document.getElementById("numberCount");
-  //  if (numberCount) {
-  //    if (selectAttribute === "wordForm") {
-  //      numberCount.textContent = `Count: ${results.length}`;
-  //    } else {
-  //      numberCount.textContent = `Count: ${results.length}`;
-  //   }
-  //  }
+    if (numberCount) {
+      if (selectAttribute === "wordForm") {
+        numberCount.textContent = `Wordform Count: ${results.length}`;
+      } else {
+        numberCount.textContent = `Result Count: ${results.length}`;
+     }
+    }
 
   //// will return no matches if no matches found 
   if (results.length === 0) {
