@@ -696,6 +696,20 @@ function displayDetails(verb) {
 
   const parse = verb.parse || "";
 
+  document.getElementById("voice").textContent =
+    parse.includes("act") ? "Active" :
+      parse.includes("mid") ? "Middle" :
+        parse.includes("psv") ? "Subjunctive" :
+          "";
+  
+  document.getElementById("mood").textContent =
+    parse.includes("ind") ? "Indicative" :
+      parse.includes("sjv") ? "Subjunctive" :
+        parse.includes("opt") ? "Optative" :
+          parse.includes("ipv") ? "Imperative" :
+            parse.includes("inj") ? "Injunctive" :
+              "";
+  
   document.getElementById("case").textContent =
     parse.includes("nom") ? "Nominative" :
       parse.includes("gen") ? "Genitive" :
