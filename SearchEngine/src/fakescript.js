@@ -715,6 +715,10 @@ function displayDetails(verb) {
       parse.includes("gen") ? "Genitive" :
         parse.includes("dat") ? "Dative" :
           parse.includes("acc") ? "Accusative" :
+            parse.included("abl") ? "Ablative" :
+              parse.included("inst") ? "Instrumental" :
+                parse.included("loc") ? "Locative" :
+                  parse.included("voc") ? "Vocative" :
             "";
 
   document.getElementById("gender").textContent =
