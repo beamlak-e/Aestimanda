@@ -716,6 +716,14 @@ function displayDetails(verb) {
                 parse.includes("3") ? "3rd Person" :
                     "";
 
+    //Added 08/14/2026 to try to add parsing of the mood
+     document.getElementById("mood").textContent =
+        parse.includes("ind") ? "Indicative" :
+            parse.includes("sjv") ? "Subjunctive" :
+                parse.includes("opt") ? "Optative" :
+                    parse.includes("ipv") ? "Imperative" :
+                        "";
+
     console.log(verb.trans);
     console.log(number);
   //  console.log(gender);
