@@ -692,6 +692,7 @@ function displayDetails(verb) {
           tense.includes("Plpf") ? "Pluperfect" :
             tense.includes("Pf") ? "Perfect" :
               tense.includes("Cond") ? "Conditional" :
+                tense.included("Fut") ? "Future" :
                 "";
 
   const parse = verb.parse || "";
